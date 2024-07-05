@@ -1,4 +1,5 @@
 *.pkl
 *.csv
-*.txt
 prompting.ipynb
+*.env
+report_with_tknscore_new欄位說明.txt

@@ -1,11 +1,19 @@
 import time
+from selenium.webdriver import ActionChains
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+def test_click_and_release(driver):
+    driver.get('https://selenium.dev/selenium/web/mouse_interaction.html')
 
+    clickable = driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[1]/div/div/div/div/nav/div[1]/span[2]/button')
+    ActionChains(driver)\
+        .click(clickable)\
+        .perform()
+        
 def autoCall(prompt, retries=3):
     def find_input_element():
         return driver.find_elements(By.TAG_NAME, "textarea")
@@ -88,7 +96,7 @@ for prompt in lists_of_prompts:
     if i == 2:
         break
     wait = WebDriverWait(driver, 10)  # 10 seconds timeout
-    button = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[1]/div[1]/div/div/div/div/nav/div[1]/span[2]/button')))
+    test_click_and_release(driver)
     autoCall(prompt)
 
 driver.quit()

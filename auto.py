@@ -2,33 +2,48 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import StaleElementReferenceException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-def autoCall(prompt):
-    # Now continue with the automation steps
-    input_elements = driver.find_elements(By.TAG_NAME, "textarea")
-    if input_elements:
-        input_elements[0].send_keys(prompt)
-        time.sleep(2)
-        input_elements[0].send_keys(Keys.ENTER)
-        time.sleep(50)
+def autoCall(prompt, retries=3):
+    def find_input_element():
+        return driver.find_elements(By.TAG_NAME, "textarea")
 
-        input_elements = driver.find_elements(By.TAG_NAME, "code")
-        time.sleep(10)
-        
-        results = []
-        for element in input_elements:
-            lines = element.text.splitlines()
-            for line in lines:
-                results.append(line)
-        
-        writeData(results)
-    else:
-        print("No text area elements found.")
+    def find_code_elements():
+        return driver.find_elements(By.TAG_NAME, "code")
 
+    for attempt in range(retries):
+        try:
+            input_elements = find_input_element()
+            if input_elements:
+                input_elements[0].send_keys(prompt)
+                time.sleep(2)
+                input_elements[0].send_keys(Keys.ENTER)
+                time.sleep(30)
+                print("30")
+
+                input_elements = find_code_elements()
+                time.sleep(10)
+                
+                results = ""
+                for element in input_elements:
+                    results += element.text + "\n"
+                print(results)
+                writeData(results)
+                break
+            else:
+                print("No text area elements found.")
+                break
+        except StaleElementReferenceException as e:
+            if attempt < retries - 1:
+                print(f"StaleElementReferenceException encountered. Retrying... ({attempt + 1}/{retries})")
+                time.sleep(2)
+            else:
+                print("Failed to interact with the element after several retries.")
+                raise e
+            
 def writeData(results):
-    with open('ans.txt', 'w') as file:
-        pass
-
     with open('ans.txt', 'a') as file:
         file.write(' '.join(results))
 
@@ -44,7 +59,12 @@ input("Please log in to ChatGPT and then press Enter here...")
 with open('test.txt', 'r') as file:
     text_to_copy = file.read()
 
-with open ('prompt.txt', 'r') as file:
+with open('ans.txt', 'w') as file:
+    pass
+
+lists_of_prompts = []
+
+with open('prompt.txt', 'r') as file:
     count = 1
     paragraph = ""
     first = True
@@ -56,11 +76,19 @@ with open ('prompt.txt', 'r') as file:
             if line == '\n':
                 count+=1
                 if count == 4:
-                    print(paragraph)
                     prompt = paragraph
                     count = 1
                     paragraph = ""
                     first = True
-                    autoCall(prompt)
-                    break
+                    lists_of_prompts.append(prompt)
+
+i = 0
+for prompt in lists_of_prompts:
+    i+=1
+    if i == 2:
+        break
+    wait = WebDriverWait(driver, 10)  # 10 seconds timeout
+    button = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[1]/div[1]/div/div/div/div/nav/div[1]/span[2]/button')))
+    autoCall(prompt)
+
 driver.quit()

@@ -7,7 +7,6 @@ from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 def test_click_and_release(driver):
-    driver.get('https://selenium.dev/selenium/web/mouse_interaction.html')
 
     clickable = driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[1]/div/div/div/div/nav/div[1]/span[2]/button')
     ActionChains(driver)\
@@ -95,7 +94,7 @@ for prompt in lists_of_prompts:
     i+=1
     if i == 2:
         break
-    wait = WebDriverWait(driver, 10)  # 10 seconds timeout
+    #wait = WebDriverWait(driver, 10)  # 10 seconds timeout
     test_click_and_release(driver)
     autoCall(prompt)
 

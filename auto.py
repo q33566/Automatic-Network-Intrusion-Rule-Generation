@@ -14,7 +14,7 @@ def test_click_and_release(driver):
         .click(clickable)\
         .perform()
         
-def autoCall(prompt, retries=3):
+def autoCall(prompt, retries=3):    
     def find_input_element():
         return driver.find_elements(By.TAG_NAME, "textarea")
 

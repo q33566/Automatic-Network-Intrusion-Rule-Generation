@@ -4,7 +4,7 @@ import pandas as pd
 import re
 from API.FileProcessor import select_random_texts, map_sid_to_unique_texts
 
-def get_pcre_by_sid(sid):
+def getPcreAnsBySid(sid):
     with open('sid_table(packet).csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -20,9 +20,6 @@ def match_patterns(targetText, GeneratedPatternList,isPositive=True):
         if not re.search(pattern, targetText, re.DOTALL):
             non_matching_patterns.append(f"Pattern {i+1}: {pattern}")
     ourResult = True if (9-len(non_matching_patterns)) >= 7 else False
-    with open('evaluation_result.txt', 'w') as file:
-        for pattern in non_matching_patterns:
-            file.write(pattern)
     #ansMatch = bool(re.search(ansPattern, targetText))
     return ourResult == isPositive
 
@@ -30,7 +27,7 @@ def positive_answer_evaluation(threeAnsPattern,sid,df):
     correct = 0
     total = 0
     errorList = []
-    ansPattern = get_pcre_by_sid(str(sid))
+    ansPattern = getPcreAnsBySid(str(sid))
     print(f"ansPattern: {ansPattern}")
     sid_to_unique_texts = map_sid_to_unique_texts(df)
     texts = sid_to_unique_texts[sid]
@@ -48,7 +45,7 @@ def negative_answer_evaluation(GeneratedPatternList,sid,sid_to_unique_texts_dict
     correct = 0
     total = 0
     errorList = []
-    ansPattern = get_pcre_by_sid(str(sid))
+    ansPattern = getPcreAnsBySid(str(sid))
     texts = select_random_texts(sid_to_unique_texts_dict, sid)
     for text in texts:
         total = total + 1
@@ -66,7 +63,7 @@ def positive_evaluation(generatedPattern,sid,sid_to_unique_texts_dict):
     correct = 0
     total = 0
     errorList = []
-    ansPattern = get_pcre_by_sid(str(sid))
+    ansPattern = getPcreAnsBySid(str(sid))
     print(f"ansPattern: {ansPattern}")
     texts = sid_to_unique_texts_dict[sid]
     for text in texts:
@@ -84,7 +81,7 @@ def negative_evaluation(GeneratedPatternList,sid,sid_to_unique_texts_dict):
     correct = 0
     total = 0
     errorList = []
-    ansPattern = get_pcre_by_sid(str(sid))
+    ansPattern = getPcreAnsBySid(str(sid))
     texts = select_random_texts(sid_to_unique_texts_dict, sid)
     for text in texts:
         total = total + 1

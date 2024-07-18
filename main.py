@@ -16,15 +16,15 @@ filted_sid = filter_sids_by_text_length(sid_to_unique_texts_dict)
 
 
 GeneratedPatternList = [
-r"^DELE \d+\r\n$", 
-r"^DELE [0-9]+\r\n$", 
-r"^DELE [1-9][0-9]*\r\n$", 
-r"^(DELE \d+\r\n)$", 
-r"^(DELE [1-9]\d*\r\n)$", 
-r"^(DELE (?:[1-9]\d{0,2}|1[0-2]\d{2})\r\n)$", 
-r"^DELE [0-9]{1,3}\r\n$", 
-r"^DELE \d{1,3}\r\n$", 
-r"^DELE [1-9][0-9]{0,2}\r\n$"
+"^DELE \d+\r\n$", 
+"^DELE [0-9]+\r\n$", 
+"^DELE [1-9][0-9]*\r\n$", 
+"^(DELE \d+\r\n)$", 
+"^(DELE [1-9]\d*\r\n)$", 
+"^(DELE (?:[1-9]\d{0,2}|1[0-2]\d{2})\r\n)$", 
+"^DELE [0-9]{1,3}\r\n$", 
+"^DELE \d{1,3}\r\n$", 
+"^DELE [1-9][0-9]{0,2}\r\n$"
 ]
 
 SID = '1161912'

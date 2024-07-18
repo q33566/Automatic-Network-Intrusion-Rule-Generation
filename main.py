@@ -28,5 +28,6 @@ GeneratedPatternList = [
 ]
 
 SID = '1161912'
-positive_evaluation(GeneratedPatternList, SID, sid_to_unique_texts_dict)
-negative_evaluation(GeneratedPatternList, SID, sid_to_unique_texts_dict)
+with open('experiment.txt', 'w') as file:
+    positive_evaluation(GeneratedPatternList, SID, sid_to_unique_texts_dict,file)
+    negative_evaluation(GeneratedPatternList, SID, sid_to_unique_texts_dict,file)

@@ -203,7 +203,8 @@ def match_patterns(target_text, generated_pattern_list, error_regex_dict, thresh
             non_matching_patterns.append(f"Pattern {i + 1}: {pattern}")
             if is_positive:
                 update_error_dict(target_text, pattern, error_regex_dict)
-            else:
+        else:
+            if not is_positive:
                 update_error_dict(target_text, pattern, error_regex_dict)
     
     total_patterns = len(generated_pattern_list)

@@ -6,96 +6,94 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-def test_click_and_release(driver):
 
-    clickable = driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[1]/div/div/div/div/nav/div[1]/span[2]/button')
-    ActionChains(driver)\
-        .click(clickable)\
-        .perform()
-        
-def autoCall(prompt, retries=3):    
-    def find_input_element():
-        return driver.find_elements(By.TAG_NAME, "textarea")
 
-    def find_code_elements():
-        return driver.find_elements(By.TAG_NAME, "code")
+def autoCall(prompt, retries=3):   
+   def find_input_element():
+       return driver.find_elements(By.TAG_NAME, "textarea")
 
-    for attempt in range(retries):
-        try:
-            input_elements = find_input_element()
-            if input_elements:
-                input_elements[0].send_keys(prompt)
-                time.sleep(2)
-                input_elements[0].send_keys(Keys.ENTER)
-                time.sleep(30)
-                print("30")
 
-                input_elements = find_code_elements()
-                time.sleep(10)
-                
-                results = ""
-                for element in input_elements:
-                    results += element.text + "\n"
-                print(results)
-                writeData(results)
-                break
-            else:
-                print("No text area elements found.")
-                break
-        except StaleElementReferenceException as e:
-            if attempt < retries - 1:
-                print(f"StaleElementReferenceException encountered. Retrying... ({attempt + 1}/{retries})")
-                time.sleep(2)
-            else:
-                print("Failed to interact with the element after several retries.")
-                raise e
-            
+   def find_code_elements():
+       return driver.find_elements(By.TAG_NAME, "code")
+
+
+   for attempt in range(retries):
+       try:
+           input_elements = find_input_element()
+           if input_elements:
+               input_elements[0].send_keys(prompt)
+               time.sleep(2)
+               input_elements[0].send_keys(Keys.ENTER)
+               time.sleep(30)
+               print("30")
+
+
+               input_elements = find_code_elements()
+               time.sleep(10)
+              
+               results = ""
+               for element in input_elements:
+                   results += element.text + "\n"
+               print(results)
+               writeData(results)
+               break
+           else:
+               print("No text area elements found.")
+               break
+       except StaleElementReferenceException as e:
+           if attempt < retries - 1:
+               print(f"StaleElementReferenceException encountered. Retrying... ({attempt + 1}/{retries})")
+               time.sleep(2)
+           else:
+               print("Failed to interact with the element after several retries.")
+               raise e
+          
 def writeData(results):
-    with open('ans.txt', 'a') as file:
-        file.write(' '.join(results))
+   with open('ans.txt', 'a') as file:
+       file.write(results)
+
 
 # Connect to the existing Chrome session
 options = webdriver.ChromeOptions()
 options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
 
+
 driver = webdriver.Chrome(options=options)
+
 
 # user login manually
 input("Please log in to ChatGPT and then press Enter here...")
 
-with open('test.txt', 'r') as file:
-    text_to_copy = file.read()
 
 with open('ans.txt', 'w') as file:
-    pass
+   pass
 
-lists_of_prompts = []
 
-with open('prompt.txt', 'r') as file:
-    count = 1
-    paragraph = ""
-    first = True
-    for line in file:
-        if line == '\n' and first:
-            first = False
-        elif first != True:
-            paragraph+=line
-            if line == '\n':
-                count+=1
-                if count == 4:
-                    prompt = paragraph
-                    count = 1
-                    paragraph = ""
-                    first = True
-                    lists_of_prompts.append(prompt)
+print("start")
 
-i = 0
-for prompt in lists_of_prompts:
-    i+=1
-    if i == 2:
-        break
-    #wait = WebDriverWait(driver, 10)  # 10 seconds timeout
-    test_click_and_release(driver)
-    autoCall(prompt)
+
+for i in range(2):
+   print("1")
+   # Open a webpage (can be any page)
+   driver.get('https://chatgpt.com/g/g-dB9e8cEts-regex-helper')  # You can replace this with any URL
+   print("get")
+   # The URL you want to open in a new tab
+   new_tab_url = 'https://chatgpt.com/g/g-dB9e8cEts-regex-helper'
+   print("url")
+
+
+   # Open a new tab with the specified URL
+   driver.execute_script(f"window.open('{new_tab_url}', '_blank');")
+
+
+   # Switch to the new tab
+   driver.switch_to.window(driver.window_handles[-1])
+
+
+   # Optional: Wait to observe the action
+   import time
+   time.sleep(5)
+   autoCall("this is a test")
+
 
 driver.quit()

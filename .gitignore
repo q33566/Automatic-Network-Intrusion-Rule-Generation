@@ -9,3 +9,5 @@ seq_dataset
 dataset/*
 experiment/*
 target.txt
+chromedriver-win32/*
+chromedriver-win64/*

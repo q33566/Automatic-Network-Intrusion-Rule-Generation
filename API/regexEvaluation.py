@@ -120,7 +120,7 @@ def write_results(file, test_type, correct, total, error_list, error_regex_dict)
     file.write(f"correct: {correct}, total: {total}, correct rate: {100 * (correct / total):.2f}%\n")
     for not_matched_payload_text in error_list:
         file.write(f"----------------------------------not matched text----------------------------------\n")
-        file.write(f"errorList:\n {not_matched_payload_text}\n")
+        file.write(f"errorList:\n{not_matched_payload_text}\n")
         file.write(f"----------------------------------not matched regex----------------------------------\n")
         for not_matched_regex in error_regex_dict[not_matched_payload_text]:
             file.write(f"error regex: {not_matched_regex}\n")

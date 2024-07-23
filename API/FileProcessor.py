@@ -199,26 +199,26 @@ def prompt_generator(sid_to_unique_texts_dict, experiment_name, number_of_times=
                 texts = list(sid_to_unique_texts_dict[sid])
                 random.shuffle(texts)
                 selected_texts = texts[:50]
-                file.write(f"sid: {sid}, text: {selected_texts}\n")
-                file.write("\n")
-                file.write("Please find a regular expression to match all packet payloads.\n" + 
-                           "You need to find the similarities in the sentences and generalize the parts where they differ. \n" + 
-                           "The regular expression is in PCRE format, please be aware to evaluate the validity of the expression you generated under PCRE regulations. \n" + 
-                           "There will be examples to help you find the patterns. \n"  +
-                           "[‘DELE 3\\r\\n’, ‘DELE 128\\r\\n’, ‘DELE 74\\r\\n’, ‘DELE 22\\r\\n’, ‘DELE 70\\r\\n’] \n" +
-                           "These examples show the attacker is trying to delete someone’s email by POP protocol. \n" +
-                           "The index of the desired mail is indicated under the DELE command. \n" +
-                           "Thus the best regular expression that matches them will be ‘^(DELE)( )(.*)(\\r\\n)$’ \n" + "\n" +
-                           "With the given example payloads: \n" +
-                           "[‘EHLO BtuCBHdSb51.com\\r\\n’, ‘EHLO 203.187.87.27\\r\\n’, ‘EHLO slae02Fo9Ep.com\\r\\n’, ‘EHLO 210.64.37.51\\r\\n’, ‘EHLO LLb0RwqdbkikFWo.com\\r\\n’] \n" + 
-                           "These examples show the attacker is trying to make sure the SMTP server is up and running. " + 
-                           "The command EHLO works in both lower case and uppercase, after that follows the SMTP server address. \n" +
-                           "Thus the best regular expression to match them will be ‘^([E|e][H|h][L|l][O|o])(.*)(\\r\\n)$’ \n" + "\n" +
-                           "Next, with the given payloads: \n")
-                file.write(f"{selected_texts}\n")         
-                file.write("Please give 3 possible and different regular expressions to match all of the elements. \n" +
-                           "You can give only 1 expression if the 3 expressions you find are too similar. \n" + 
-                           "Let’s work this out in a step-by-step way to make sure we have the right answer. \n" + 
-                           "To make the expression not too general, make sure the expressions don’t match these negative examples: [‘CAPA\\r\\n’, ‘CAPA\\r\\n’, ‘\\x15\\x03\\x01’, ‘GET / HTTP/1.0\\r\\n\\r\\n’, ‘r\\n\\r\\n’] \n" +
-                           "You only need to give me the three regular expressions in code format.\n")
-                file.write("\n")
+                file.write(f"sid: {sid}, positive text: {selected_texts}")
+                #file.write("\n")
+                # file.write("Please find a regular expression to match all packet payloads.\n" + 
+                #            "You need to find the similarities in the sentences and generalize the parts where they differ. \n" + 
+                #            "The regular expression is in PCRE format, please be aware to evaluate the validity of the expression you generated under PCRE regulations. \n" + 
+                #            "There will be examples to help you find the patterns. \n"  +
+                #            "[‘DELE 3\\r\\n’, ‘DELE 128\\r\\n’, ‘DELE 74\\r\\n’, ‘DELE 22\\r\\n’, ‘DELE 70\\r\\n’] \n" +
+                #            "These examples show the attacker is trying to delete someone’s email by POP protocol. \n" +
+                #            "The index of the desired mail is indicated under the DELE command. \n" +
+                #            "Thus the best regular expression that matches them will be ‘^(DELE)( )(.*)(\\r\\n)$’ \n" + "\n" +
+                #            "With the given example payloads: \n" +
+                #            "[‘EHLO BtuCBHdSb51.com\\r\\n’, ‘EHLO 203.187.87.27\\r\\n’, ‘EHLO slae02Fo9Ep.com\\r\\n’, ‘EHLO 210.64.37.51\\r\\n’, ‘EHLO LLb0RwqdbkikFWo.com\\r\\n’] \n" + 
+                #            "These examples show the attacker is trying to make sure the SMTP server is up and running. " + 
+                #            "The command EHLO works in both lower case and uppercase, after that follows the SMTP server address. \n" +
+                #            "Thus the best regular expression to match them will be ‘^([E|e][H|h][L|l][O|o])(.*)(\\r\\n)$’ \n" + "\n" +
+                #            "Next, with the given payloads: \n")
+                # file.write(f"{selected_texts}\n")         
+                # file.write("Please give 3 possible and different regular expressions to match all of the elements. \n" +
+                #            "You can give only 1 expression if the 3 expressions you find are too similar. \n" + 
+                #            "Let’s work this out in a step-by-step way to make sure we have the right answer. \n" + 
+                #            "To make the expression not too general, make sure the expressions don’t match these negative examples: [‘CAPA\\r\\n’, ‘CAPA\\r\\n’, ‘\\x15\\x03\\x01’, ‘GET / HTTP/1.0\\r\\n\\r\\n’, ‘r\\n\\r\\n’] \n" +
+                #            "You only need to give me the three regular expressions in code format.\n")
+                # file.write("\n")

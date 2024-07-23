@@ -4,8 +4,10 @@ prompting.ipynb
 *.env
 report_with_tknscore_new欄位說明.txt
 prompt.py
-prompt.txt
-all_texts.txt
 seq_dataset
-*.txt
 .png
+dataset/*
+experiment/*
+target.txt
+chromedriver-win32/*
+chromedriver-win64/*

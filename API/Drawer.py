@@ -155,19 +155,27 @@ def save_plot(expanded_dict, base_path, title_prefix):
         codes = [f'regex{i+1}' for i in range(len(texts))]
 
         plt.figure(figsize=(10, 5))
-        plt.bar(codes, scores, color='skyblue')
+        bars = plt.bar(codes, scores, color='skyblue')
         plt.xlabel('Text Code')
         plt.ylabel('Score')
         
-        plt.title(f'{title_prefix} Scores for {sid}')
+        # Move title to the top of the figure
+        plt.suptitle(f'{title_prefix} Scores for {sid}', y=1.05)
         plt.ylim(0, 1)
         plt.xticks(rotation=45)
-        plt.tight_layout()
+        
+        plt.tight_layout(rect=[0, 0, 1, 0.95])
         plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
 
+        # Add percentage text above bars
+        for bar, score in zip(bars, scores):
+            yval = bar.get_height()
+            plt.text(bar.get_x() + bar.get_width() / 2, yval + 0.02, f'{yval:.1%}', ha='center', va='bottom')
+            
         file_path = os.path.join(base_path, f'{sid}.png')
-        plt.savefig(file_path)
+        plt.savefig(file_path, bbox_inches='tight')
         plt.close()
+    print('Saved:', base_path)
         
 def draw_positive_contribution_of_generated_regex(grouped_sid_to_regex_dict, sid_to_unique_texts_dict, text_to_error_regex_dict, experiment_name):
     expanded_dict = calculate_contribution(grouped_sid_to_regex_dict, sid_to_unique_texts_dict, text_to_error_regex_dict)

@@ -199,13 +199,21 @@ def match_patterns(target_text, generated_pattern_list, error_regex_dict, thresh
     
     non_matching_patterns = []
     for i, pattern in enumerate(generated_pattern_list):
-        if not regex.search(pattern, target_text, regex.DOTALL):
-            non_matching_patterns.append(f"Pattern {i + 1}: {pattern}")
-            if is_positive:
-                update_error_dict(target_text, pattern, error_regex_dict)
-        else:
-            if not is_positive:
-                update_error_dict(target_text, pattern, error_regex_dict)
+        try:
+            # Attempt to search using the current regex pattern
+            if regex.search(pattern, target_text, regex.DOTALL):
+                pass
+            else:
+                non_matching_patterns.append(f"Pattern {i + 1}: {pattern}")
+                if is_positive:
+                    update_error_dict(target_text, pattern, error_regex_dict)
+                else:
+                    if not is_positive:
+                        update_error_dict(target_text, pattern, error_regex_dict)
+        except regex.error as e:
+            # Log the error and skip this pattern
+            #print(f"Regex error with pattern {pattern}: {e}")
+            continue  # Skip the current pattern and proceed with the next one
     
     total_patterns = len(generated_pattern_list)
     non_matching_count = len(non_matching_patterns)

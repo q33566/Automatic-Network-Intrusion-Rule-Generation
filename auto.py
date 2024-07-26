@@ -11,7 +11,7 @@ from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-def autoCall(prompt, retries=3):   
+def autoCall(prompt, filename, retries=3):   
     def find_input_element():
         return driver.find_elements(By.TAG_NAME, "textarea")
 
@@ -36,7 +36,7 @@ def autoCall(prompt, retries=3):
                     results += element.text + "\n"
                 print("Results collected:")
                 print(results)
-                writeData(results)
+                add_to_txt(filename, results)
                 break
             else:
                 print("No text area elements found.")
@@ -48,11 +48,26 @@ def autoCall(prompt, retries=3):
             else:
                 print("Failed to interact with the element after several retries.")
                 raise e
-
-def writeData(results):
-    with open('ans.txt', 'a') as file:
+            
+def add_to_txt(filename,results):
+    sid = get_sid(filename)
+    with open(f'{directory}/{sid}.txt', 'a') as file:
         file.write(results)
 
+def get_sid(filename):
+    sid = ""
+    count = 0
+    s = filename[count]
+    while(s!='_'):
+        sid+=s
+        count+=1
+        s = filename[count]
+    return sid
+
+directory = f'./experiment/6 out of 9/txt'
+if not os.path.exists(directory):
+    os.makedirs(directory)
+    
 # Connect to the existing Chrome session
 options = webdriver.ChromeOptions()
 options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
@@ -64,9 +79,9 @@ input("Please log in to ChatGPT and then press Enter here...")
 with open('ans.txt', 'w') as file:
     pass  # Clearing the file content
 
-experiment_name = 'test'
-prompt_directory = r"/Users/jasminegau/Automatic-Network-Intrusion-Rule-Generation/experiment/6 out of 9/prompt"
-output_directory = os.path.join('./experiment', experiment_name, 'output')
+EXPERIMENT_NAME = '6 out of 9_4'
+prompt_directory = r"C:\NCU\Intern\AutomaticNetwork IntrusionRuleGeneration\experiment\6 out of 9_4\prompt"
+output_directory = os.path.join('./experiment', '6 out of 9_4', 'output')
 
 # Ensure the output directory exists
 os.makedirs(output_directory, exist_ok=True)
@@ -74,12 +89,12 @@ os.makedirs(output_directory, exist_ok=True)
 # Sort files in directory alphabetically
 sorted_filenames = sorted(os.listdir(prompt_directory))
 
-count = 0
+# count = 0
 for filename in sorted_filenames:
+    # count+=1
+    # if count<=24:
+    #     continue
     if filename.endswith('.txt'):
-        count += 1
-        if count == 5:
-            break
         file_path = os.path.join(prompt_directory, filename)
         with open(file_path, 'r', encoding='utf-8') as file:
             prompt = file.read()
@@ -89,8 +104,8 @@ for filename in sorted_filenames:
         new_tab_url = 'https://chatgpt.com/g/g-df45SPLWq-2024-07-regex-finder'
         driver.execute_script(f"window.open('{new_tab_url}', '_blank');")
         driver.switch_to.window(driver.window_handles[-1])
-
+        
         time.sleep(5)  # Wait to observe the action
-        autoCall(prompt)
+        autoCall(prompt, filename)
 
 driver.quit()

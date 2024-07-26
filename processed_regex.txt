@@ -1,0 +1,5 @@
+Conversion Errors:
+Row 48:
+Original: {SID: ["[A-Za-z0-9+/=]+\r\n[A-Za-z0-9+/=]+\r\n", "[A-Za-z0-9+/=]+\r\n[A-Za-z0-9+/=]+\r\n", "[A-Za-z0-9+/=\r\n]+"]}
+Error: malformed node or string on line 1: <ast.Name object at 0x000001427FEF0490>
+

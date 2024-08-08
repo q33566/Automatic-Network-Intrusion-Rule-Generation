@@ -193,8 +193,8 @@ def prompt_generator(sid_to_unique_texts_dict, experiment_name, number_of_times=
         os.makedirs(directory)
         
     sorted_filtered_sids = get_sorted_filtered_sids(sid_to_unique_texts_dict)
-    for idx in range(number_of_times):
-        for sid in sorted_filtered_sids:
+    for sid in sorted_filtered_sids:
+        for idx in range(number_of_times):
             with open(f'{directory}/{sid}_prompt_{idx}.txt', 'w') as file:
                 texts = list(sid_to_unique_texts_dict[sid])
                 random.shuffle(texts)
@@ -222,3 +222,35 @@ def prompt_generator(sid_to_unique_texts_dict, experiment_name, number_of_times=
                 #            "To make the expression not too general, make sure the expressions don’t match these negative examples: [‘CAPA\\r\\n’, ‘CAPA\\r\\n’, ‘\\x15\\x03\\x01’, ‘GET / HTTP/1.0\\r\\n\\r\\n’, ‘r\\n\\r\\n’] \n" +
                 #            "You only need to give me the three regular expressions in code format.\n")
                 # file.write("\n")
+def prompt_generator_no_random(sid_to_unique_texts_dict, experiment_name, number_of_times=0):
+    """
+    Generate prompt files for the experiment.
+
+    Args:
+        sid_to_unique_texts_dict (dict): Dictionary mapping sids to their unique texts.
+        experiment_name (str): Name of the experiment.
+        number_of_times (int): Number of times to generate prompts.
+
+    Returns:
+        None
+    """
+    directory = f'./experiment/{experiment_name}/prompt/'
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+        
+    sorted_filtered_sids = get_sorted_filtered_sids(sid_to_unique_texts_dict)
+    for sid in sorted_filtered_sids:
+        texts = list(sid_to_unique_texts_dict[sid])
+        total_texts = len(texts)
+        max_texts = 300
+        random.shuffle(texts)
+        selected_texts = texts[:max_texts] if total_texts > max_texts else texts
+        
+        for idx in range(number_of_times):
+            texts_for_prompt = []
+            start_idx = idx * 50
+            for i in range(50):
+                texts_for_prompt.append(selected_texts[(start_idx + i) % len(selected_texts)])
+            
+            with open(f'{directory}/{sid}_prompt_{idx}.txt', 'w') as file:
+                file.write(f"sid: {sid}, positive text: {texts_for_prompt}")

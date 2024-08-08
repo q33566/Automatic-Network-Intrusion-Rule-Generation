@@ -81,7 +81,7 @@ def draw_outcome_histogram(outcome_dict, experiment_name, title='Distribution of
     
     plt.savefig(os.path.join(directory, f'{title.replace(" ", "_")}_histogram.png'), bbox_inches='tight')
     plt.show()
-
+    
 def draw_outcome_scatter(outcome_dict, experiment_name, title='Success Rate Trend by SID'):
     """
     Draws a scatter plot of success rates by SID.
@@ -190,3 +190,4 @@ def draw_negative_contribution_of_generated_regex(grouped_sid_to_regex_dict, sid
     base_path = os.path.join('./experiment', experiment_name, 'graph/contribution/negative')
     os.makedirs(base_path, exist_ok=True)
     save_plot(expanded_dict, base_path, 'Negative')
+    return expanded_dict

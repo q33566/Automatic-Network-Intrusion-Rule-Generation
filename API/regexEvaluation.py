@@ -87,7 +87,7 @@ def perform_evaluation(generated_pattern, sid, sid_to_unique_texts_dict, error_r
     """
     correct = 0
     total = 0
-    error_list = []
+    not_match_text_list = []
     
     texts = (select_all_negative_texts(sid_to_unique_texts_dict, sid)
              if not is_positive 
@@ -100,9 +100,9 @@ def perform_evaluation(generated_pattern, sid, sid_to_unique_texts_dict, error_r
         is_match = match_patterns(text, generated_pattern, error_regex_dict, threshold, is_positive, mode)
         correct += is_match
         if not is_match:
-            error_list.append(text)
+            not_match_text_list.append(text)
     
-    return correct, total, error_list
+    return correct, total, not_match_text_list
 
 def write_results(file, test_type, correct, total, error_list, error_regex_dict):
     """
@@ -122,8 +122,12 @@ def write_results(file, test_type, correct, total, error_list, error_regex_dict)
         file.write(f"----------------------------------not matched text----------------------------------\n")
         file.write(f"errorList:\n{not_matched_payload_text}\n")
         file.write(f"----------------------------------not matched regex----------------------------------\n")
-        for not_matched_regex in error_regex_dict[not_matched_payload_text]:
-            file.write(f"error regex: {not_matched_regex}\n")
+        if not_matched_payload_text in error_regex_dict:
+            for not_matched_regex in error_regex_dict[not_matched_payload_text]:
+                file.write(f"error regex: {not_matched_regex}\n")
+        else:
+            file.write("No matching error regex found.\n")
+
 
 def validate_input_types(target_text, generated_pattern_list, error_regex_dict):
     """
@@ -174,7 +178,7 @@ def calculate_result(mode, total_patterns, non_matching_count, threshold):
         bool: True if the result meets the threshold, otherwise False.
     """
     if mode == 'fraction':
-        return (total_patterns - non_matching_count) / total_patterns >= threshold
+        return ((total_patterns - non_matching_count) / (total_patterns)) >= threshold
     elif mode == 'integer':
         return total_patterns - non_matching_count >= threshold
     else:
@@ -201,15 +205,14 @@ def match_patterns(target_text, generated_pattern_list, error_regex_dict, thresh
     for i, pattern in enumerate(generated_pattern_list):
         try:
             # Attempt to search using the current regex pattern
-            if regex.search(pattern, target_text, regex.DOTALL):
-                pass
-            else:
-                non_matching_patterns.append(f"Pattern {i + 1}: {pattern}")
-                if is_positive:
+            if bool(regex.search(pattern, target_text, regex.DOTALL)):
+                if not is_positive:
+                    non_matching_patterns.append(f"Pattern {i + 1}: {pattern}")
                     update_error_dict(target_text, pattern, error_regex_dict)
-                else:
-                    if not is_positive:
-                        update_error_dict(target_text, pattern, error_regex_dict)
+            else:
+                if is_positive:
+                    non_matching_patterns.append(f"Pattern {i + 1}: {pattern}")
+                    update_error_dict(target_text, pattern, error_regex_dict)
         except regex.error as e:
             # Log the error and skip this pattern
             #print(f"Regex error with pattern {pattern}: {e}")
@@ -218,58 +221,4 @@ def match_patterns(target_text, generated_pattern_list, error_regex_dict, thresh
     total_patterns = len(generated_pattern_list)
     non_matching_count = len(non_matching_patterns)
     result = calculate_result(mode, total_patterns, non_matching_count, threshold)
-    
-    return result == is_positive
-
-
-# def getPcreAnsBySid(sid):
-#     with open('sid_table(packet).csv', newline='') as csvfile:
-#         reader = csv.DictReader(csvfile)
-#         for row in reader:
-#             if row['SID'] == str(sid):
-#                 # Remove leading and trailing slashes from the pcre value
-#                 return row['pcre']
-#     return None
-
-# def positive_answer_evaluation(threeAnsPattern,sid,df):
-#     correct = 0
-#     total = 0
-#     errorList = []
-#     ansPattern = getPcreAnsBySid(str(sid))
-#     print(f"ansPattern: {ansPattern}")
-#     sid_to_unique_texts = map_sid_to_unique_texts(df)
-#     texts = sid_to_unique_texts[sid]
-#     for text in texts:
-#         total = total + 1
-#         correct = correct + bool(regex.search(ansPattern, text, regex.DOTALL))
-#         if not match_patterns(text, threeAnsPattern, True):
-#             errorList.append(text)
-
-#     print("positive test")
-#     print(f"correct: {correct}, total: {total}")
-#     print(f"errorList: {errorList}")
-#     return correct, total
-
-# def negative_answer_evaluation(GeneratedPatternList,sid,sid_to_unique_texts_dict):
-#     correct = 0
-#     total = 0
-#     errorList = []
-#     ansPattern = getPcreAnsBySid(str(sid))
-#     texts = select_random_texts(sid_to_unique_texts_dict, sid)
-#     for text in texts:
-#         # 确保 ansPattern 是字符串类型
-#         if not isinstance(ansPattern, str):
-#             raise TypeError(f"ansPattern is not a string: {ansPattern} (type {type(ansPattern)})")
-#         # 确保 text 是字符串类型
-#         if not isinstance(text, str):
-#             raise TypeError(f"text is not a string: {text} (type {type(text)})")
-#         total = total + 1
-#         if(not regex.search(ansPattern, text, regex.DOTALL)):
-#             correct = correct + 1
-#         if  not match_patterns(text, GeneratedPatternList, False):
-#             errorList.append(text)
-#     print("negative test")
-#     print(f"correct: {correct}, total: {total}")
-#     for error_text in errorList:
-#         print(error_text)
-#     print(f"errorList: {errorList}")
+    return result

@@ -1,0 +1,20 @@
+
+Sorted by Percentage of Text Occurrences (sip_df):
+    sid  text_count  unique_text_count  Percentage
+1494383      224412             202287   94.038669
+1018113        8430                  4    3.532547
+1586514        5608               5269    2.350003
+1602447         186                144    0.077942
+                  2                  2    0.000838
+
+Number of SIDs with zero unique texts: 0
+Total number of unique SIDs: 5
+Total number of SIDs (including duplicates): 238638
+Total number of binary (including duplicates): 0
+0.00% of rows have no text
+
+SIDs with 5 or more unique texts (sip_df):
+    sid  unique_text_count
+1494383             202287
+1586514               5269
+1602447                144

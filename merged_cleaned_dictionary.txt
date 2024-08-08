@@ -1,38 +1,42 @@
 1161912:
-  ^DELE \d{1,3}\r\n$
+  ^DELE [0-9]+
+$
   ^DELE (?:\d{1,2}|1[01]\d|12[0-9]|13[0-5])
 $
   ^DELE [1-9][0-9]?
 $
-  ^DELE [0-9]+
+  ^DELE \d{1,3}
 $
   ^DELE [1-9][0-9]{0,2}
 $
-  ^DELE \d{1,3}
-$
+  ^DELE \d{1,3}\r\n$
   ^DELE [1-9]\d{0,2}
 $
 
 1176066:
-  ^TOP \d+ 0\r\n$
   ^(RETR \d{1,3}|TOP \d{1,3} 0)
 $
   ^TOP \d{1,3} 0
 $
   ^RETR \d+\r\n$
-  RETR \d+\r\n
-  TOP \d+ 0\r\n
   ^RETR \d{1,3}
 $
   ^(RETR \d+\r\n|TOP \d+ 0\r\n)$
+  RETR \d+\r\n
+  ^TOP \d+ 0\r\n$
+  TOP \d+ 0\r\n
 
 1239754:
-  ^GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=\d{14} HTTP\/1\.1\r\nHost: clientapi\.ipip\.net\r\nAccept: \*\/\*\r\nPragma: no-cache\r\nUser-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)\r\n\r\n$
-  ^GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=2020\d{10} HTTP\/1\.1\r\nHost: clientapi\.ipip\.net\r\nAccept: \*\/\*\r\nPragma: no-cache\r\nUser-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)\r\n\r\n$
-  ^GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=20\d{12} HTTP\/1\.1\r\nHost: clientapi\.ipip\.net\r\nAccept: \*\/\*\r\nPragma: no-cache\r\nUser-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)\r\n\r\n$
-  GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=\d{8}(\d{6})? HTTP\/1\.1\r\nHost: clientapi\.ipip\.net\r\nAccept: \*\/\*\r\nPragma: no-cache\r\nUser-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)\r\n\r\n
-  GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=20\d{12} HTTP\/1\.1\r\nHost: clientapi\.ipip\.net\r\nAccept: \*\/\*\r\nPragma: no-cache\r\nUser-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)\r\n\r\n
   GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=\d{14} HTTP\/1\.1\r\nHost: clientapi\.ipip\.net\r\nAccept: \*\/\*\r\nPragma: no-cache\r\nUser-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)\r\n\r\n
+  GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=\d{8}(\d{6})? HTTP\/1\.1\r\nHost: clientapi\.ipip\.net\r\nAccept: \*\/\*\r\nPragma: no-cache\r\nUser-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)\r\n\r\n
+  GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=\d{14} HTTP\/1\.1
+Host: clientapi\.ipip\.net
+Accept: \*\/\*
+Pragma: no-cache
+User-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)
+
+
+  GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=20\d{12} HTTP\/1\.1\r\nHost: clientapi\.ipip\.net\r\nAccept: \*\/\*\r\nPragma: no-cache\r\nUser-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)\r\n\r\n
   GET http:\/\/wujieliulan\.com\/ HTTP\/1\.1
 Host: wujieliulan\.com
 Connection: keep-alive
@@ -41,154 +45,150 @@ Accept: \*\/\*
 User-Agent: python-requests\/2\.6\.0 CPython\/2\.7\.5 Linux\/3\.10\.0-693\.11\.1\.el7\.x86_64
 
 
-  GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=\d{14} HTTP\/1\.1
-Host: clientapi\.ipip\.net
-Accept: \*\/\*
-Pragma: no-cache
-User-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)
-
-
+  ^GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=20\d{12} HTTP\/1\.1\r\nHost: clientapi\.ipip\.net\r\nAccept: \*\/\*\r\nPragma: no-cache\r\nUser-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)\r\n\r\n$
+  ^GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=2020\d{10} HTTP\/1\.1\r\nHost: clientapi\.ipip\.net\r\nAccept: \*\/\*\r\nPragma: no-cache\r\nUser-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)\r\n\r\n$
+  ^GET http:\/\/clientapi\.ipip\.net\/echo\.php\?info=\d{14} HTTP\/1\.1\r\nHost: clientapi\.ipip\.net\r\nAccept: \*\/\*\r\nPragma: no-cache\r\nUser-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\)\r\n\r\n$
 
 1454621:
-  ^EHLO (?:[A-Za-z0-9-]+\.[A-Za-z]{2,}|\d{1,3}(?:\.\d{1,3}){3})\r\n$
-  ^EHLO \d{1,3}(\.\d{1,3}){3}\r\n$
-  ^EHLO [a-zA-Z0-9-]+\.[a-zA-Z]+\r\n$
-  ^EHLO (?:[A-Za-z0-9-]+\.[A-Za-z]{2,}|\d{1,3}(?:\.\d{1,3}){3}|[A-Za-z0-9-]+)\r\n$
   ^EHLO [a-zA-Z0-9-]+\r\n$
+  ^EHLO (?:[A-Za-z0-9-]+\.[A-Za-z]{2,}|\d{1,3}(?:\.\d{1,3}){3})\r\n$
   ^EHLO (?:[A-Za-z0-9-]+(?:\.[A-Za-z]{2,})?|\d{1,3}(?:\.\d{1,3}){3})\r\n$
-  ^EHLO [\d\.]+\r\n$
-  ^EHLO [\w.-]+\r\n$
   ^EHLO [\w-]+(?:\.[\w-]+)*\r\n$
+  ^EHLO \d{1,3}(\.\d{1,3}){3}\r\n$
+  ^EHLO [\d\.]+\r\n$
+  ^EHLO (?:[A-Za-z0-9-]+\.[A-Za-z]{2,}|\d{1,3}(?:\.\d{1,3}){3}|[A-Za-z0-9-]+)\r\n$
+  ^EHLO [\w.-]+\r\n$
+  ^EHLO [a-zA-Z0-9-]+\.[a-zA-Z]+\r\n$
 
 1491662:
+  ^POST /ipp HTTP/1\.1\r\nHost: [\d{1,3}(\.\d{1,3}){3}:110\r\nUser-Agent: Mozilla/5\.0 zgrab/0\.x\r\nContent-Length: 14[4-7]\r\nAccept: \*/\*\r\nContent-Type: application/ipp\r\nAccept-Encoding: gzip\r\n\r\n\x02\x01$
+  POST /ipp HTTP/1.1\r\nHost: \d{1,3}(\.\d{1,3}){3}:110\r\nUser-Agent: Mozilla/5.0 zgrab/0.x\r\nContent-Length: \d{3}\r\nAccept: \*/\*\r\nContent-Type: application/ipp\r\nAccept-Encoding: gzip\r\n\r\n\x02\x01
+  ^POST /ipp HTTP/1\.1\r\nHost: \d{1,3}(\.\d{1,3}){3}:110\r\nUser-Agent: Mozilla/5\.0 zgrab/0\.x\r\nContent-Length: 14[4-7]\r\nAccept: \*/\*\r\nContent-Type: application/ipp\r\nAccept-Encoding: gzip\r\n\r\n\x02\x01$
   POST /ipp HTTP/1\.1\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:110\r\nUser-Agent: Mozilla/5\.0 zgrab/0\.x\r\nContent-Length: 14[4-7]\r\nAccept: \*/\*\r\nContent-Type: application/ipp\r\nAccept-Encoding: gzip\r\n\r\n\x02\x01
   POST /ipp HTTP/1\.1\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:110\r\nUser-Agent: Mozilla/5\.0 zgrab/0\.x\r\nContent-Length: \d{3}\r\nAccept: \*/\*\r\nContent-Type: application/ipp\r\nAccept-Encoding: gzip\r\n\r\n\x02\x01
   POST /ipp HTTP/1\.1\r\nHost: [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}:110\r\nUser-Agent: Mozilla/5\.0 zgrab/0\.x\r\nContent-Length: 14[4-7]\r\nAccept: \*/\*\r\nContent-Type: application/ipp\r\nAccept-Encoding: gzip\r\n\r\n\x02\x01
-  ^POST /ipp HTTP/1\.1\r\nHost: \d{1,3}(\.\d{1,3}){3}:110\r\nUser-Agent: Mozilla/5\.0 zgrab/0\.x\r\nContent-Length: 14[4-7]\r\nAccept: \*/\*\r\nContent-Type: application/ipp\r\nAccept-Encoding: gzip\r\n\r\n\x02\x01$
-  ^POST /ipp HTTP/1\.1\r\nHost: [\d{1,3}(\.\d{1,3}){3}:110\r\nUser-Agent: Mozilla/5\.0 zgrab/0\.x\r\nContent-Length: 14[4-7]\r\nAccept: \*/\*\r\nContent-Type: application/ipp\r\nAccept-Encoding: gzip\r\n\r\n\x02\x01$
-  POST /ipp HTTP/1.1\r\nHost: \d{1,3}(\.\d{1,3}){3}:110\r\nUser-Agent: Mozilla/5.0 zgrab/0.x\r\nContent-Length: \d{3}\r\nAccept: \*/\*\r\nContent-Type: application/ipp\r\nAccept-Encoding: gzip\r\n\r\n\x02\x01
 
 1494383:
   REGISTER sip:[0-9]{1,3}(\.[0-9]{1,3}){3} SIP/2\.0\r\nVia: SIP/2\.0/TCP [0-9]{1,3}(\.[0-9]{1,3}){3}:[0-9]{1,5};branch=z9hG4bK[a-z0-9]{32};rport\r\nTo: \"[0-9]+\"<sip:[0-9]+@[0-9]{1,3}(\.[0-9]{1,3}){3}>\r\nFrom: \"[0-9]+\"<sip:[0-9]+@[0-9]{1,3}(\.[0-9]{1,3}){3}>;tag=[a-z0-9]{10}\r\nCSeq: [0-9]+ REGISTER\r\nCall-ID: [a-z0-9]{32}\r\nMax-Forwards: 70\r\nContact: <sip:[0-9]+@[0-9]{1,3}(\.[0-9]{1,3}){3}:[0-9]{1,5}(;transport=TCP)?>(\r\nUser-Agent: [^\r\n]+)?\r\nContent-Length: 0\r\nExpires: [0-9]+\r\nSupported: 100rel\r\nAllow: (INVITE, ACK, CANCEL, OPTIONS, BYE, SUBSCRIBE, NOTIFY, REFER, INFO, MESSAGE){1}\r\n\r\n
-  ^REGISTER\s+sip:\d{1,3}(?:\.\d{1,3}){3}\s+SIP/2\.0\r\nVia:\s+SIP/2\.0/TCP\s+\d{1,3}(?:\.\d{1,3}){3}:\d{1,5};branch=z9hG4bK\w+;rport\r\nTo:\s+".+?"<sip:\d+@\d{1,3}(?:\.\d{1,3}){3}>\r\nFrom:\s+".+?"<sip:\d+@\d{1,3}(?:\.\d{1,3}){3}>;tag=\w+\r\nCSeq:\s+\d+\s+REGISTER\r\nCall-ID:\s+\w+\r\nMax-Forwards:\s+\d+\r\nContact:\s+<sip:\d+@\d{1,3}(?:\.\d{1,3}){3}:\d{1,5}(;transport=TCP)?>\r\nUser-Agent:\s+\w+\r\nContent-Length:\s+\d+\r\nExpires:\s+\d+\r\nSupported:\s+100rel\r\nAllow:\s+INVITE,\s+ACK,\s+CANCEL,\s+OPTIONS,\s+BYE,\s+SUBSCRIBE,\s+NOTIFY,\s+REFER,\s+INFO,\s+MESSAGE\r\n\r\n$
   ^REGISTER sip:\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} SIP/2\.0\r\nVia: SIP/2\.0/TCP \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+;branch=z9hG4bK[\da-f]{32};rport\r\nTo: \"\d+\"<sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}>\r\nFrom: \"\d+\"<sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}>;tag=[a-z0-9]{10}\r\nCSeq: \d+ REGISTER\r\nCall-ID: [\da-f]{32}\r\nMax-Forwards: 70\r\nContact: <sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+(;transport=TCP)?>\r\nUser-Agent: [\w-]+\r\nContent-Length: 0\r\nExpires: \d+\r\nSupported: 100rel\r\nAllow: (INVITE, ACK, CANCEL, OPTIONS, BYE, SUBSCRIBE, NOTIFY, REFER, INFO, MESSAGE)+\r\n\r\n$
-  ^REGISTER sip:\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} SIP/2\.0\r\nVia: SIP/2\.0/TCP \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+;branch=z9hG4bK[\da-f]{32};rport\r\nTo: \"\d+\"<sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}>\r\nFrom: \"\d+\"<sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}>;tag=[a-z0-9]{10}\r\nCSeq: \d+ REGISTER\r\nCall-ID: [\da-f]{32}\r\nMax-Forwards: 70\r\nContact: <sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+>\r\nUser-Agent: [\w-]+\r\nContent-Length: 0\r\nExpires: 0\r\nSupported: 100rel\r\nAllow: (INVITE, ACK, CANCEL, OPTIONS, BYE, SUBSCRIBE, NOTIFY, REFER, INFO, MESSAGE)+\r\n\r\n$
+  ^REGISTER sip:\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} SIP/2\.0\r\nVia: SIP/2\.0/TCP \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+;branch=z9hG4bK[\da-f]{32};rport\r\nTo: \"\d+\"<sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}>\r\nFrom: \"\d+\"<sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}>;tag=[a-z0-9]{10}\r\nCSeq: \d+ REGISTER\r\nCall-ID: [\da-f]{32}\r\nMax-Forwards: 70\r\nContact: <sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+>\r\nUser-Agent: [\w-]+\r\nContent-Length: 0\r\nExpires: \d+\r\nSupported: 100rel\r\nAllow: (INVITE, ACK, CANCEL, OPTIONS, BYE, SUBSCRIBE, NOTIFY, REFER, INFO, MESSAGE)+\r\n\r\n$
   REGISTER sip:[0-9]{1,3}(\.[0-9]{1,3}){3} SIP/2\.0\r\nVia: SIP/2\.0/TCP [0-9]{1,3}(\.[0-9]{1,3}){3}:[0-9]{1,5};branch=z9hG4bK[a-z0-9]{32};rport\r\nTo: \"[0-9]+\"<sip:[0-9]+@[0-9]{1,3}(\.[0-9]{1,3}){3}>\r\nFrom: \"[0-9]+\"<sip:[0-9]+@[0-9]{1,3}(\.[0-9]{1,3}){3}>;tag=[a-z0-9]{10}\r\nCSeq: [0-9]+ REGISTER\r\nCall-ID: [a-z0-9]{32}\r\nMax-Forwards: 70\r\nContact: <sip:[0-9]+@[0-9]{1,3}(\.[0-9]{1,3}){3}:[0-9]{1,5}(;transport=TCP)?>(\r\nUser-Agent: [^\r\n]+)?\r\nContent-Length: 0\r\nExpires: [0-9]{1,4}\r\nSupported: 100rel\r\nAllow: (INVITE, ACK, CANCEL, OPTIONS, BYE, SUBSCRIBE, NOTIFY, REFER, INFO, MESSAGE){1}\r\n\r\n
   REGISTER sip:[0-9]{1,3}(\.[0-9]{1,3}){3} SIP/2\.0\r\nVia: SIP/2\.0/TCP [0-9]{1,3}(\.[0-9]{1,3}){3}:[0-9]{1,5};branch=z9hG4bK[a-z0-9]{32};rport\r\nTo: \"[0-9]+\"<sip:[0-9]+@[0-9]{1,3}(\.[0-9]{1,3}){3}>\r\nFrom: \"[0-9]+\"<sip:[0-9]+@[0-9]{1,3}(\.[0-9]{1,3}){3}>;tag=[a-z0-9]{10}\r\nCSeq: [0-9]+ REGISTER\r\nCall-ID: [a-z0-9]{32}\r\nMax-Forwards: 70\r\nContact: <sip:[0-9]+@[0-9]{1,3}(\.[0-9]{1,3}){3}:[0-9]{1,5}(;transport=TCP)?>(\r\nUser-Agent: [^\r\n]+)?\r\nContent-Length: 0\r\nExpires: 0\r\nSupported: 100rel\r\nAllow: (INVITE, ACK, CANCEL, OPTIONS, BYE, SUBSCRIBE, NOTIFY, REFER, INFO, MESSAGE){1}\r\n\r\n
-  ^REGISTER sip:\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} SIP/2\.0\r\nVia: SIP/2\.0/TCP \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+;branch=z9hG4bK[\da-f]{32};rport\r\nTo: \"\d+\"<sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}>\r\nFrom: \"\d+\"<sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}>;tag=[a-z0-9]{10}\r\nCSeq: \d+ REGISTER\r\nCall-ID: [\da-f]{32}\r\nMax-Forwards: 70\r\nContact: <sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+>\r\nUser-Agent: [\w-]+\r\nContent-Length: 0\r\nExpires: \d+\r\nSupported: 100rel\r\nAllow: (INVITE, ACK, CANCEL, OPTIONS, BYE, SUBSCRIBE, NOTIFY, REFER, INFO, MESSAGE)+\r\n\r\n$
+  ^REGISTER\s+sip:\d{1,3}(?:\.\d{1,3}){3}\s+SIP/2\.0\r\nVia:\s+SIP/2\.0/TCP\s+\d{1,3}(?:\.\d{1,3}){3}:\d{1,5};branch=z9hG4bK\w+;rport\r\nTo:\s+".+?"<sip:\d+@\d{1,3}(?:\.\d{1,3}){3}>\r\nFrom:\s+".+?"<sip:\d+@\d{1,3}(?:\.\d{1,3}){3}>;tag=\w+\r\nCSeq:\s+\d+\s+REGISTER\r\nCall-ID:\s+\w+\r\nMax-Forwards:\s+\d+\r\nContact:\s+<sip:\d+@\d{1,3}(?:\.\d{1,3}){3}:\d{1,5}(;transport=TCP)?>\r\nUser-Agent:\s+\w+\r\nContent-Length:\s+\d+\r\nExpires:\s+\d+\r\nSupported:\s+100rel\r\nAllow:\s+INVITE,\s+ACK,\s+CANCEL,\s+OPTIONS,\s+BYE,\s+SUBSCRIBE,\s+NOTIFY,\s+REFER,\s+INFO,\s+MESSAGE\r\n\r\n$
+  ^REGISTER sip:\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} SIP/2\.0\r\nVia: SIP/2\.0/TCP \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+;branch=z9hG4bK[\da-f]{32};rport\r\nTo: \"\d+\"<sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}>\r\nFrom: \"\d+\"<sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}>;tag=[a-z0-9]{10}\r\nCSeq: \d+ REGISTER\r\nCall-ID: [\da-f]{32}\r\nMax-Forwards: 70\r\nContact: <sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+>\r\nUser-Agent: [\w-]+\r\nContent-Length: 0\r\nExpires: 0\r\nSupported: 100rel\r\nAllow: (INVITE, ACK, CANCEL, OPTIONS, BYE, SUBSCRIBE, NOTIFY, REFER, INFO, MESSAGE)+\r\n\r\n$
 
 1516300:
-  ^RCPT TO:<[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n$
-  ^RCPT TO:<[\w.%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n$
-  (?i)rcpt to:<[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}>\r\n
-  ^RCPT TO:<[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}>\r\n$
-  RCPT TO:<[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n
   rcpt TO:<[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n
+  ^RCPT TO:<[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n$
+  RCPT TO:<[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n
+  ^RCPT TO:<[\w.%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n$
+  ^RCPT TO:<[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}>\r\n$
+  (?i)rcpt to:<[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}>\r\n
 
 1546462:
-  ^Mail From:<[^>]+@[a-z0-9.-]+\.[a-z]{2,}>\r\n$
-  ^MAIL FROM:<[^>]+@[^>]+>\r\n$
-  ^MAIL FROM: <[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n$
-  ^mail from: <[^>]+@[^>]+>\r\n$
-  ^MAIL FROM:<[^>]+@[a-z0-9.-]+\.[a-z]{2,}>\r\n$
-  ^mail from: <[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n$
-  ^MAIL FROM:<[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n$
   ^MAIL FROM:<[^>]+>\r\n$
+  ^MAIL FROM:<[^>]+@[^>]+>\r\n$
+  ^MAIL FROM:<[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n$
+  ^Mail From:<[^>]+@[a-z0-9.-]+\.[a-z]{2,}>\r\n$
   ^MAIL FROM: <[^>]+@[a-z0-9.-]+\.[a-z]{2,}>\r\n$
+  ^MAIL FROM:<[^>]+@[a-z0-9.-]+\.[a-z]{2,}>\r\n$
+  ^mail from: <[^>]+@[^>]+>\r\n$
+  ^MAIL FROM: <[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n$
+  ^mail from: <[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}>\r\n$
 
 1586514:
-  INVITE sip:[+\d]+@\S+ SIP/2\.0\r\nVia: SIP/2\.0/TCP (?:\d{1,3}\.){3}\d{1,3}:\d+;branch=[\w\d]+;rport\r\nMax-Forwards: 70\r\nContact: <sip:[\w\d]+@(?:\d{1,3}\.){3}\d{1,3}:\d+;transport=tcp>;\+sip\.instance=\"<urn:uuid:[\w\d-]+>\"\r\nTo: <sip:[+\d]+@\S+>\r\nFrom: \"[\w\d]+\"<sip:[\w\d]+@\S+>;tag=[\w\d]+\r\nCall-ID: [\w\d]+.\.\r\nCSeq: 1 INVITE\r\nAllow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH\r\nContent-Type: application/sdp\r\nSupported: [\w, ]+\r\nUser-Agent: [\w\d\s]+[\w\d\s]+\d+\.\d+\r\nAllow-Events: [\w, ]+\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 (?:\d{1,3}\.){3}\d{1,3}\r\ns=[\w\d]+\r\nc=IN IP4 (?:\d{1,3}\.){3}\d{1,3}\r\nt=0 0\r\nm=audio \d+ RTP/AVP \d+ \d+ \d+ \d+ \d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=fmtp:\d+ annexb=[\w\d]+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=fmtp:\d+ [\w\d]+=[\w\d]+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=fmtp:\d+ 0-16\r\na=sendrecv\r\n
   INVITE sip:\d+@(?:\d{1,3}\.){3}\d{1,3} SIP/2\.0\r\n(?:Via: SIP/2\.0/TCP \d{1,3}\.){3}\d{1,3}:\d+;branch=[\w\d]+;rport\r\nTo: <sip:\d+@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}>\r\nFrom: \"\w*\"<sip:\w*@\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}>;tag=[\w\d]+\r\nCSeq: 1 INVITE\r\nCall-ID: [\w\d]+\r\nMax-Forwards: 70\r\nContact: <sip:\w*@(?:\d{1,3}\.){3}\d{1,3}:\d+;transport=TCP>\r\nUser-Agent: [\w\d]+\r\nAllow: INVITE, ACK, CANCEL, OPTIONS, BYE, SUBSCRIBE, NOTIFY, REFER, INFO, MESSAGE\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 (?:\d{1,3}\.){3}\d{1,3}\r\ns=[\w\d]+\r\nc=IN IP4 (?:\d{1,3}\.){3}\d{1,3}\r\nt=0 0\r\nm=audio \d+ RTP/AVP \d+ \d+ \d+ \d+ \d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=fmtp:\d+ [\w\d]+=[\w\d]+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=sendrecv\r\nm=video \d+ RTP/AVP \d+\r\na=rtpmap:\d+ H264/90000\r\na=fmtp:\d+ packetization-mode=1\r\na=sendrecv\r\n
-  INVITE sip:\d+@\S+ SIP/2\.0\r\nVia: SIP/2\.0/TCP (?:\d{1,3}\.){3}\d{1,3}:\d+;branch=z9hG4bK[\w\d]+;rport\r\nTo: <sip:\d+@\S+>\r\nFrom: \"\w*\"<sip:\w*@\S+>;tag=[\w\d]+\r\nCSeq: 1 INVITE\r\nCall-ID: [\w\d]+\r\nMax-Forwards: 70\r\nContact: <sip:\w*@(?:\d{1,3}\.){3}\d{1,3}:\d+;transport=TCP>\r\nUser-Agent: [\w\d]+\r\nAllow: [\w, ]+\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 (?:\d{1,3}\.){3}\d{1,3}\r\ns=[\w\d]+\r\nc=IN IP4 (?:\d{1,3}\.){3}\d{1,3}\r\nt=0 0\r\nm=audio \d+ RTP/AVP [\d ]+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=fmtp:\d+ annexb=[\w\d]+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=sendrecv\r\nm=video \d+ RTP/AVP \d+\r\na=rtpmap:\d+ H264/90000\r\na=fmtp:\d+ packetization-mode=1\r\na=sendrecv\r\n
   ^INVITE sip:[\d\+]+@[^\s]+ SIP/2\.0\r\nVia: SIP/2\.0/TCP [^\s]+;branch=z9hG4bK[0-9a-f]{32};rport\r\nTo: <sip:[\d\+]+@[^\s]+>\r\nFrom: "[^"]*"<sip:[^>]+>;tag=[^\s]+\r\nCSeq: \d+ INVITE\r\nCall-ID: [0-9a-f]{32}\r\nMax-Forwards: \d+\r\nContact: <sip:[^>]+>\r\nUser-Agent: [^\r\n]+\r\nAllow: [^\r\n]+\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 [^\s]+\r\ns=[^\r\n]+\r\nc=IN IP4 [^\s]+\r\nt=0 0\r\nm=audio \d+ RTP/AVP [^\r\n]+\r\na=rtpmap:\d+ [^\r\n]+\r\na=fmtp:\d+ [^\r\n]+\r\na=rtpmap:\d+ [^\r\n]+\r\na=rtpmap:\d+ [^\r\n]+\r\na=rtpmap:\d+ [^\r\n]+\r\na=rtpmap:\d+ [^\r\n]+\r\na=sendrecv\r\nm=video \d+ RTP/AVP \d+\r\na=rtpmap:\d+ [^\r\n]+\r\na=fmtp:\d+ [^\r\n]+\r\na=sendrecv\r\n$
-  ^INVITE sip:.+@.+\sSIP/2\.0\r\nVia: SIP/2\.0/TCP \d+\.\d+\.\d+\.\d+:\d+;branch=z9hG4bK[a-f0-9]+;rport\r\nTo: <sip:.+@.+>\r\nFrom: ".+"<sip:.+>;tag=[a-zA-Z0-9]+\r\nCSeq: 1 INVITE\r\nCall-ID: [a-zA-Z0-9]+\r\nMax-Forwards: 70\r\nContact: <sip:.+@.+:\d+;transport=TCP>\r\nUser-Agent: .+\r\nAllow: .+\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 \d+\.\d+\.\d+\.\d+\r\ns=.+\r\nc=IN IP4 \d+\.\d+\.\d+\.\d+\r\nt=0 0\r\nm=audio \d+ RTP/AVP .+\r\na=rtpmap:\d+ .+\r\na=fmtp:.+\r\na=sendrecv\r\n
+  INVITE sip:[+\d]+@\S+ SIP/2\.0\r\nVia: SIP/2\.0/TCP (?:\d{1,3}\.){3}\d{1,3}:\d+;branch=[\w\d]+;rport\r\nMax-Forwards: 70\r\nContact: <sip:[\w\d]+@(?:\d{1,3}\.){3}\d{1,3}:\d+;transport=tcp>;\+sip\.instance=\"<urn:uuid:[\w\d-]+>\"\r\nTo: <sip:[+\d]+@\S+>\r\nFrom: \"[\w\d]+\"<sip:[\w\d]+@\S+>;tag=[\w\d]+\r\nCall-ID: [\w\d]+.\.\r\nCSeq: 1 INVITE\r\nAllow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH\r\nContent-Type: application/sdp\r\nSupported: [\w, ]+\r\nUser-Agent: [\w\d\s]+[\w\d\s]+\d+\.\d+\r\nAllow-Events: [\w, ]+\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 (?:\d{1,3}\.){3}\d{1,3}\r\ns=[\w\d]+\r\nc=IN IP4 (?:\d{1,3}\.){3}\d{1,3}\r\nt=0 0\r\nm=audio \d+ RTP/AVP \d+ \d+ \d+ \d+ \d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=fmtp:\d+ annexb=[\w\d]+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=fmtp:\d+ [\w\d]+=[\w\d]+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=fmtp:\d+ 0-16\r\na=sendrecv\r\n
+  INVITE sip:\d+@\S+ SIP/2\.0\r\nVia: SIP/2\.0/TCP (?:\d{1,3}\.){3}\d{1,3}:\d+;branch=z9hG4bK[\w\d]+;rport\r\nTo: <sip:\d+@\S+>\r\nFrom: \"\w*\"<sip:\w*@\S+>;tag=[\w\d]+\r\nCSeq: 1 INVITE\r\nCall-ID: [\w\d]+\r\nMax-Forwards: 70\r\nContact: <sip:\w*@(?:\d{1,3}\.){3}\d{1,3}:\d+;transport=TCP>\r\nUser-Agent: [\w\d]+\r\nAllow: [\w, ]+\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 (?:\d{1,3}\.){3}\d{1,3}\r\ns=[\w\d]+\r\nc=IN IP4 (?:\d{1,3}\.){3}\d{1,3}\r\nt=0 0\r\nm=audio \d+ RTP/AVP [\d ]+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=fmtp:\d+ annexb=[\w\d]+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=rtpmap:\d+ [\w\d]+/\d+\r\na=sendrecv\r\nm=video \d+ RTP/AVP \d+\r\na=rtpmap:\d+ H264/90000\r\na=fmtp:\d+ packetization-mode=1\r\na=sendrecv\r\n
   ^INVITE sip:\+\d+@.+\sSIP/2\.0\r\nVia: SIP/2\.0/TCP \d+\.\d+\.\d+\.\d+:\d+;branch=z9hG4bK[a-f0-9]+;rport\r\nTo: <sip:\+\d+@.+>\r\nFrom: ".+"<sip:.+>;tag=[a-zA-Z0-9]+\r\nCSeq: 1 INVITE\r\nCall-ID: [a-zA-Z0-9]+\r\nMax-Forwards: 70\r\nContact: <sip:.+@.+:\d+;transport=TCP>\r\nUser-Agent: .+\r\nAllow: .+\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 \d+\.\d+\.\d+\.\d+\r\ns=.+\r\nc=IN IP4 \d+\.\d+\.\d+\.\d+\r\nt=0 0\r\nm=audio \d+ RTP/AVP .+\r\na=rtpmap:\d+ .+\r\na=fmtp:.+\r\na=sendrecv\r\n
   ^INVITE sip:\d+@.+\sSIP/2\.0\r\nVia: SIP/2\.0/TCP \d+\.\d+\.\d+\.\d+:\d+;branch=z9hG4bK[a-f0-9]+;rport\r\nTo: <sip:\d+@.+>\r\nFrom: ".+"<sip:.+>;tag=[a-zA-Z0-9]+\r\nCSeq: 1 INVITE\r\nCall-ID: [a-zA-Z0-9]+\r\nMax-Forwards: 70\r\nContact: <sip:.+@.+:\d+;transport=TCP>\r\nUser-Agent: .+\r\nAllow: .+\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 \d+\.\d+\.\d+\.\d+\r\ns=.+\r\nc=IN IP4 \d+\.\d+\.\d+\.\d+\r\nt=0 0\r\nm=audio \d+ RTP/AVP .+\r\na=rtpmap:\d+ .+\r\na=fmtp:.+\r\na=sendrecv\r\n
+  ^INVITE sip:.+@.+\sSIP/2\.0\r\nVia: SIP/2\.0/TCP \d+\.\d+\.\d+\.\d+:\d+;branch=z9hG4bK[a-f0-9]+;rport\r\nTo: <sip:.+@.+>\r\nFrom: ".+"<sip:.+>;tag=[a-zA-Z0-9]+\r\nCSeq: 1 INVITE\r\nCall-ID: [a-zA-Z0-9]+\r\nMax-Forwards: 70\r\nContact: <sip:.+@.+:\d+;transport=TCP>\r\nUser-Agent: .+\r\nAllow: .+\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 \d+\.\d+\.\d+\.\d+\r\ns=.+\r\nc=IN IP4 \d+\.\d+\.\d+\.\d+\r\nt=0 0\r\nm=audio \d+ RTP/AVP .+\r\na=rtpmap:\d+ .+\r\na=fmtp:.+\r\na=sendrecv\r\n
 
 1602447:
-  ACK sip:\+\d+@[\w\.-]+ SIP/2\.0\r\nVia: SIP/2\.0/TCP \d+\.\d+\.\d+\.\d+:\d+;branch=z9hG4bK-\d+---[a-f0-9]{16};rport\r\nMax-Forwards: 70\r\nTo: sip:\+\d+@[\w\.-]+\r\nFrom: \"\w+\"<sip:\w+@[\w\.-]+>;tag=[a-f0-9]+\r\nCall-ID: [\w-]+\r\nCSeq: 1 ACK\r\nContent-Length: 0\r\n\r\n
-  ACK sip:\+\d+@(\d{1,3}-){3}\d{1,3}\.[A-Z]+-IP\.[a-z]+\.[a-z]{2,3} SIP/2\.0\r\nVia: SIP/2\.0/TCP \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5};branch=z9hG4bK-\d+-1---[a-z0-9]{16};rport\r\nMax-Forwards: 70\r\nTo: sip:\+\d+@(\d{1,3}-){3}\d{1,3}\.[A-Z]+-IP\.[a-z]+\.[a-z]{2,3}\r\nFrom: \".+\"<sip:.+@(\d{1,3}-){3}\d{1,3}\.[A-Z]+-IP\.[a-z]+\.[a-z]{2,3}>;tag=[a-z0-9]{8}\r\nCall-ID: [a-zA-Z0-9-_]{16}\.\.\r\nCSeq: 1 ACK\r\nContent-Length: 0\r\n\r\n
   ACK sip:\+\d+@210-\d+-\d+-\d+\.HINET-IP\.hinet\.net SIP/2\.0\r\nVia: SIP/2\.0/TCP \d+\.\d+\.\d+\.\d+:\d+;branch=z9hG4bK-[\w-]+;rport\r\nMax-Forwards: \d+\r\nTo: sip:\+\d+@210-\d+-\d+-\d+\.HINET-IP\.hinet\.net\r\nFrom: \"[^\"]*\"<sip:[^>]+@210-\d+-\d+-\d+\.HINET-IP\.hinet\.net>;tag=\w+\r\nCall-ID: [\w-]+\r\nCSeq: 1 ACK\r\nContent-Length: 0\r\n\r\n
-  ACK sip:\+\d+@host-\d{1,3}-\d{1,3}-\d{1,3}-\d{1,3}\.[a-z]+\.[a-z]{2,3} SIP/2\.0\r\nVia: SIP/2\.0/TCP \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5};branch=z9hG4bK-\d+-1---[a-z0-9]{16};rport\r\nMax-Forwards: 70\r\nTo: sip:\+\d+@host-\d{1,3}-\d{1,3}-\d{1,3}-\d{1,3}\.[a-z]+\.[a-z]{2,3}\r\nFrom: \".+\"<sip:.+@host-\d{1,3}-\d{1,3}-\d{1,3}-\d{1,3}\.[a-z]+\.[a-z]{2,3}>;tag=[a-z0-9]{8}\r\nCall-ID: [a-zA-Z0-9-_]{16}\.\.\r\nCSeq: 1 ACK\r\nContent-Length: 0\r\n\r\n
-  ACK sip:\+\d+@[\w.-]+ SIP/2\.0\r\nVia: SIP/2\.0/TCP \d+\.\d+\.\d+\.\d+:\d+;branch=z9hG4bK-[\w-]+;rport\r\nMax-Forwards: \d+\r\nTo: sip:\+\d+@[\w.-]+\r\nFrom: \"[^\"]*\"<sip:[^>]+@[\w.-]+>;tag=\w+\r\nCall-ID: [\w-]+\r\nCSeq: 1 ACK\r\nContent-Length: 0\r\n\r\n
   ACK sip:\+\d+@host-\d+-\d+-\d+-\d+\.ip\.kbtelecom\.net SIP/2\.0\r\nVia: SIP/2\.0/TCP \d+\.\d+\.\d+\.\d+:\d+;branch=z9hG4bK-[\w-]+;rport\r\nMax-Forwards: \d+\r\nTo: sip:\+\d+@host-\d+-\d+-\d+-\d+\.ip\.kbtelecom\.net\r\nFrom: \"[^\"]*\"<sip:[^>]+@host-\d+-\d+-\d+-\d+\.ip\.kbtelecom\.net>;tag=\w+\r\nCall-ID: [\w-]+\r\nCSeq: 1 ACK\r\nContent-Length: 0\r\n\r\n
+  ACK sip:\+\d+@(\d{1,3}-){3}\d{1,3}\.[A-Z]+-IP\.[a-z]+\.[a-z]{2,3} SIP/2\.0\r\nVia: SIP/2\.0/TCP \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5};branch=z9hG4bK-\d+-1---[a-z0-9]{16};rport\r\nMax-Forwards: 70\r\nTo: sip:\+\d+@(\d{1,3}-){3}\d{1,3}\.[A-Z]+-IP\.[a-z]+\.[a-z]{2,3}\r\nFrom: \".+\"<sip:.+@(\d{1,3}-){3}\d{1,3}\.[A-Z]+-IP\.[a-z]+\.[a-z]{2,3}>;tag=[a-z0-9]{8}\r\nCall-ID: [a-zA-Z0-9-_]{16}\.\.\r\nCSeq: 1 ACK\r\nContent-Length: 0\r\n\r\n
+  ACK sip:\+\d+@[\w.-]+ SIP/2\.0\r\nVia: SIP/2\.0/TCP \d+\.\d+\.\d+\.\d+:\d+;branch=z9hG4bK-[\w-]+;rport\r\nMax-Forwards: \d+\r\nTo: sip:\+\d+@[\w.-]+\r\nFrom: \"[^\"]*\"<sip:[^>]+@[\w.-]+>;tag=\w+\r\nCall-ID: [\w-]+\r\nCSeq: 1 ACK\r\nContent-Length: 0\r\n\r\n
+  ACK sip:\+\d+@host-\d{1,3}-\d{1,3}-\d{1,3}-\d{1,3}\.[a-z]+\.[a-z]{2,3} SIP/2\.0\r\nVia: SIP/2\.0/TCP \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5};branch=z9hG4bK-\d+-1---[a-z0-9]{16};rport\r\nMax-Forwards: 70\r\nTo: sip:\+\d+@host-\d{1,3}-\d{1,3}-\d{1,3}-\d{1,3}\.[a-z]+\.[a-z]{2,3}\r\nFrom: \".+\"<sip:.+@host-\d{1,3}-\d{1,3}-\d{1,3}-\d{1,3}\.[a-z]+\.[a-z]{2,3}>;tag=[a-z0-9]{8}\r\nCall-ID: [a-zA-Z0-9-_]{16}\.\.\r\nCSeq: 1 ACK\r\nContent-Length: 0\r\n\r\n
+  ACK sip:\+\d+@[\w\.-]+ SIP/2\.0\r\nVia: SIP/2\.0/TCP \d+\.\d+\.\d+\.\d+:\d+;branch=z9hG4bK-\d+---[a-f0-9]{16};rport\r\nMax-Forwards: 70\r\nTo: sip:\+\d+@[\w\.-]+\r\nFrom: \"\w+\"<sip:\w+@[\w\.-]+>;tag=[a-f0-9]+\r\nCall-ID: [\w-]+\r\nCSeq: 1 ACK\r\nContent-Length: 0\r\n\r\n
   ACK sip:\+\d+@[0-9a-zA-Z-]+\.[a-zA-Z]+ SIP/2\.0\r\nVia: SIP/2\.0/TCP \d+\.\d+\.\d+\.\d+:\d+;branch=z9hG4bK-\d+---[a-f0-9]{16};rport\r\nMax-Forwards: 70\r\nTo: sip:\+\d+@[0-9a-zA-Z-]+\.[a-zA-Z]+\r\nFrom: \"\w+\"<sip:\w+@[0-9a-zA-Z-]+\.[a-zA-Z]+>;tag=[a-f0-9]+\r\nCall-ID: [\w-]+\r\nCSeq: 1 ACK\r\nContent-Length: 0\r\n\r\n
 
 1648627:
-  ^USER [a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}\r\n$
-  ^USER [a-zA-Z0-9_.+-]+$
   ^USER\s\w+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\r\n$
-  ^USER\s[a-zA-Z0-9._%+-]+(@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})?\r\n$
-  ^USER [a-zA-Z0-9_.+-]+\r\n$
   ^USER\s\w+\r\n$
+  ^USER\s[a-zA-Z0-9._%+-]+(@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})?\r\n$
   ^USER [a-zA-Z0-9]+\r\n$
   ^USER [a-zA-Z0-9._%+-]+\r\n$
+  ^USER [a-zA-Z0-9_.+-]+$
+  ^USER [a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}\r\n$
   ^USER [a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\r\n$
+  ^USER [a-zA-Z0-9_.+-]+\r\n$
 
 1763524:
-  (?i)^helo [a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,6}\r\n$
-  (?i)^helo \d{1,3}(\.\d{1,3}){3}\r\n$
-  ^(?:HELO|helo) (?:\d{1,3}(?:-\d{1,3}){3}|(?:[A-Za-z0-9]{1,25}\.){1,3}(?:[A-Za-z]{2,20}))\.?(?:so-net\.net\.tw|linux\.com|tinp\.net\.tw|domain)?\r\n$
-  ^(?:HELO|helo) (?:\d{1,3}\.){3}\d{1,3}\r\n$
-  ^(?:HELO|helo) (?:[A-Za-z0-9]{10,}\.){1,2}(?:[A-Za-z0-9]{2,20})\.(?:linux\.com|so-net\.net\.tw|tinp\.net\.tw|domain)\r\n$
-  (?i)^HELO [a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,6})?\r\n$
   ^(?:HELO|helo) [\w-]+(?:\.[\w-]+)+\r\n$
+  (?i)^helo \d{1,3}(\.\d{1,3}){3}\r\n$
+  ^(?:HELO|helo) (?:[A-Za-z0-9]{10,}\.){1,2}(?:[A-Za-z0-9]{2,20})\.(?:linux\.com|so-net\.net\.tw|tinp\.net\.tw|domain)\r\n$
+  (?i)^helo [a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,6}\r\n$
+  ^(?:HELO|helo) (?:\d{1,3}\.){3}\d{1,3}\r\n$
+  (?i)^HELO [a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,6})?\r\n$
+  ^(?:HELO|helo) (?:\d{1,3}(?:-\d{1,3}){3}|(?:[A-Za-z0-9]{1,25}\.){1,3}(?:[A-Za-z]{2,20}))\.?(?:so-net\.net\.tw|linux\.com|tinp\.net\.tw|domain)?\r\n$
 
 1783777:
-  GET / HTTP/1\.[01]\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}\r\n(?:User-Agent: Mozilla/5\.0 \((?:Windows NT 10\.0; WOW64|Macintosh; Intel Mac OS X 10\.11; rv:47\.0)\) (?:AppleWebKit/537\.36 \(KHTML, like Gecko\) Chrome/66\.0\.3359\.117 Safari/537\.36|Gecko/20100101 Firefox/47\.0|zgrab/0\.x)\r\nAccept: \*/\*\r\n(?:Accept-Encoding: gzip\r\n)?)?(?:Connection: keep-alive\r\n)?\r\n
-  ^GET \/api\/v1\/targets HTTP\/1\.1\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:143\r\nUser-Agent: Mozilla\/5\.0 zgrab\/0\.x\r\nAccept: \*\/\*\r\nAccept-Encoding: gzip\r\n\r\n$
   GET / HTTP/\d\.\d\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(:\d{1,5})?\r\nAccept: \*/\*\r\n\r\n
-  ^GET \/ HTTP\/1\.[01]\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:(110|143|25|587)\r\n(User-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\) AppleWebKit\/537\.36 \(KHTML, like Gecko\) Chrome\/66\.0\.3359\.117 Safari\/537\.36 \r\n)?Accept: \*\/\*\r\n(Accept-Encoding: gzip\r\n)?\r\n$
-  GET / HTTP/1\.1\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}\r\nUser-Agent: Mozilla/5\.0 \((?:Windows NT 10\.0; WOW64|Macintosh; Intel Mac OS X 10\.11; rv:47\.0)\) (?:AppleWebKit/537\.36 \(KHTML, like Gecko\) Chrome/66\.0\.3359\.117 Safari/537\.36|Gecko/20100101 Firefox/47\.0|zgrab/0\.x)\r\nAccept: \*/\*\r\n(?:Accept-Encoding: gzip\r\n)?Connection: keep-alive\r\n\r\n
+  GET / HTTP/1\.[01]\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}\r\n(?:User-Agent: Mozilla/5\.0 \((?:Windows NT 10\.0; WOW64|Macintosh; Intel Mac OS X 10\.11; rv:47\.0)\) (?:AppleWebKit/537\.36 \(KHTML, like Gecko\) Chrome/66\.0\.3359\.117 Safari/537\.36|Gecko/20100101 Firefox/47\.0|zgrab/0\.x)\r\nAccept: \*/\*\r\n(?:Accept-Encoding: gzip\r\n)?)?(?:Connection: keep-alive\r\n)?\r\n
   ^GET \/ HTTP\/1\.[01]\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:(110|143|25|587)\r\n(User-Agent: Mozilla\/5\.0 \(Macintosh; Intel Mac OS X 10\.11; rv:47\.0\) Gecko\/20100101 Firefox\/47\.0\r\nAccept: \*\/\*\r\nConnection: keep-alive\r\n\r\n)?$
-  GET / HTTP/\d\.\d\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(:\d{1,5})?\r\nUser-Agent: Mozilla/5\.0 .+\r\nAccept: \*/\*\r\n(.*\r\n)?\r\n
+  ^GET \/api\/v1\/targets HTTP\/1\.1\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:143\r\nUser-Agent: Mozilla\/5\.0 zgrab\/0\.x\r\nAccept: \*\/\*\r\nAccept-Encoding: gzip\r\n\r\n$
   GET / HTTP/1\.1\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}\r\nUser-Agent: Mozilla/5\.0 \((?:Windows NT 10\.0; WOW64|Macintosh; Intel Mac OS X 10\.11; rv:47\.0)\) (?:AppleWebKit/537\.36 \(KHTML, like Gecko\) Chrome/66\.0\.3359\.117 Safari/537\.36|Gecko/20100101 Firefox/47\.0|zgrab/0\.x)\r\nAccept: \*/\*\r\n(?:Accept-Encoding: gzip\r\n)?\r\n
+  GET / HTTP/1\.1\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}\r\nUser-Agent: Mozilla/5\.0 \((?:Windows NT 10\.0; WOW64|Macintosh; Intel Mac OS X 10\.11; rv:47\.0)\) (?:AppleWebKit/537\.36 \(KHTML, like Gecko\) Chrome/66\.0\.3359\.117 Safari/537\.36|Gecko/20100101 Firefox/47\.0|zgrab/0\.x)\r\nAccept: \*/\*\r\n(?:Accept-Encoding: gzip\r\n)?Connection: keep-alive\r\n\r\n
+  GET / HTTP/\d\.\d\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(:\d{1,5})?\r\nUser-Agent: Mozilla/5\.0 .+\r\nAccept: \*/\*\r\n(.*\r\n)?\r\n
+  ^GET \/ HTTP\/1\.[01]\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:(110|143|25|587)\r\n(User-Agent: Mozilla\/5\.0 \(Windows NT 10\.0; WOW64\) AppleWebKit\/537\.36 \(KHTML, like Gecko\) Chrome\/66\.0\.3359\.117 Safari\/537\.36 \r\n)?Accept: \*\/\*\r\n(Accept-Encoding: gzip\r\n)?\r\n$
   GET / HTTP/\d\.\d\r\nHost: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(:\d{1,5})?(\r\nUser-Agent: .+\r\nAccept: \*/\*\r\n(.*\r\n)?\r\n)?
 
 1942313:
-  ^MIME-Version: 1\.0\r\nFrom:.*\r\nTo:.*\r\nReply-To:.*\r\nDate: [0-9]{1,2} [A-Za-z]{3} 2020 [0-9]{2}:[0-9]{2}:[0-9]{2} -0800\r\nSubject: =\?utf-8\?B\?.*\?=\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n$
   ^MIME-Version: 1\.0\r\nFrom: .+ <.+>\r\nTo: .+\r\nReply-To: .+ <.+>\r\nDate: [0-9]{1,2} [A-Za-z]{3} 2020 [0-9]{2}:[0-9]{2}:[0-9]{2} -0800\r\nSubject: =\?utf-8\?B\?.+\?=\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n$
-  (?s)^MIME-Version: 1\.0\r\nFrom: .*@.*\.net\.tw\r\nTo: .*\r\nReply-To: .*@.*\.net\.tw\r\nDate: .*\r\nSubject: =\?utf-8\?B\?.*\?=\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n
-  (?s)^MIME-Version: 1\.0\r\nFrom: .* <.*@.*\.tw>\r\nTo: .*@.*\r\nReply-To: .* <.*@.*\.mx>\r\nDate: .*\r\nSubject: =\?utf-8\?B\?.*\?=\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n
-  (?s)^MIME-Version: 1\.0\r\nFrom: "?.*"? <.*@.*\.tw>\r\nTo: .*\r\nReply-To: "?.*"? <.*@.*\.com\.mx>\r\nDate: .*\r\nSubject: =\?utf-8\?B\?.*\?=\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n
   ^MIME-Version: 1.0\r\nFrom: (?:\"[^\"]+\" )?<[\w.-]+@[\w.-]+\.\w{2,4}>\r\nTo: [\w.-]+@[\w.-]+\.\w{2,4}\r\nReply-To: (?:\"[^\"]+\" )?<[\w.-]+@[\w.-]+\.\w{2,4}>\r\nDate: \d{1,2} \w{3} \d{4} \d{2}:\d{2}:\d{2} -\d{4}\r\nSubject: =\?utf-8\?B\?.+\?=\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n$
+  (?s)^MIME-Version: 1\.0\r\nFrom: .*@.*\.net\.tw\r\nTo: .*\r\nReply-To: .*@.*\.net\.tw\r\nDate: .*\r\nSubject: =\?utf-8\?B\?.*\?=\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n
+  (?s)^MIME-Version: 1\.0\r\nFrom: "?.*"? <.*@.*\.tw>\r\nTo: .*\r\nReply-To: "?.*"? <.*@.*\.com\.mx>\r\nDate: .*\r\nSubject: =\?utf-8\?B\?.*\?=\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n
+  ^MIME-Version: 1\.0\r\nFrom:.*\r\nTo:.*\r\nReply-To:.*\r\nDate: [0-9]{1,2} [A-Za-z]{3} 2020 [0-9]{2}:[0-9]{2}:[0-9]{2} -0800\r\nSubject: =\?utf-8\?B\?.*\?=\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n$
+  (?s)^MIME-Version: 1\.0\r\nFrom: .* <.*@.*\.tw>\r\nTo: .*@.*\r\nReply-To: .* <.*@.*\.mx>\r\nDate: .*\r\nSubject: =\?utf-8\?B\?.*\?=\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n
 
 3000019:
+  (?:[a-zA-Z0-9+/]{2,}[\r\n]+)+(?:[a-zA-Z0-9+/]{2,}[\r\n]+)*\.{1,}\r\n
   [\r\nA-Za-z0-9\+\/]+={0,2}\r\n.\r\n
-  (\w+\d+[\w+/]*={0,2}){1,10}\r\n
   (\w+(\r\n)?)+={0,2}\r\n
   [\r\nA-Za-z0-9\+\/]+={0,2}(?:[\r\nA-Za-z0-9\+\/]+={0,2})*\r\n.\r\n
-  (?:[a-zA-Z0-9+/]{2,}[\r\n]+)+(?:[a-zA-Z0-9+/]{2,}[\r\n]+)*\.{1,}\r\n
   [\r\nA-Za-z0-9\+\/]+={0,2}.*\r\n.\r\n
+  (\w+\d+[\w+/]*={0,2}){1,10}\r\n
   ([a-zA-Z0-9+/]+={0,2}){1,20}\r\n
 
 3000025:
-  ^[a-zA-Z0-9+/=]{2,12}
-$
   ^[a-zA-Z0-9+/=]{2,20}
+$
+  ^[A-Za-z0-9+/]{4,}={0,2}
+$
+  ^[a-zA-Z0-9+/=]+
+$
+  ^[A-Za-z0-9+/]{4,}
 $
   ^[a-zA-Z0-9+/=]{3,}[
 ]{2}$
   ^[a-zA-Z0-9+/=]{4,}[
 ]{2}$
-  ^[A-Za-z0-9+/=]+
-$
-  ^[A-Za-z0-9+/]{4,}
-$
-  ^[a-zA-Z0-9+/=]+
-$
   ^[a-zA-Z0-9+/=]{5,}[
 ]{2}$
-  ^[A-Za-z0-9+/]{4,}={0,2}
+  ^[A-Za-z0-9+/=]+
+$
+  ^[a-zA-Z0-9+/=]{2,12}
 $
 
 3000026:
   (?s)^[A-Za-z0-9+/=
-]+P[a-zA-Z0-9]+\/a>[\s\S]+$
-  (?s)^<td[^>]*>[\s\S]+<\/td>[\s\S]+$
-  (?s)PHRhYmxlIHN0eWxlPSJib3JkZXItY29sbGFwc2U6Y29sbGFwc2U7IGJvcmRlci1zcGFjaW5nOjA7IHBhZGRpbmc6MDsgdGV4dC1hbGlnbjpsZWZ0OyB2ZXJ0aWNhbC1hbGlnbjp0b3A7IHdpZHRoOjEwMCUiPg0KPHRib2R5Pg0KPHRyIHN0eWxlPSJwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wIj4NCjx0ZCBoZWlnaHQ9IjY1cHgiIHN0eWxlPSJtYXJnaW46MDsgYm9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlIWltcG9ydGFudDsgY29sb3I6IzEyMTIxMjsgZm9udC1mYW1pbHk6SGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTo2NXB4OyBmb250LXdlaWdodDo0MDA7IGxpbmUtaGVpZ2h0OjY1cHg7IG1hcmdpbjowOyBwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wOyB3b3JkLXdyYXA6YnJlYWstd29yZCI+Jm5ic3A7DQogPC90ZD4NCjwvdHI+DQo8L3Rib2R5Pg0KPC90YWJsZT4NCjx0YWJsZSBzdHlsZT0iYm9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlOyBib3JkZXItc3BhY2luZzowOyBwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wOyB3aWR0aDo2MDBweCI+DQogPHRib2R5Pg0KPHRyIHN0eWxlPSJwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wIj4NCjx0ZCBzdHlsZT0ibWFyZ2luOjA7IGJvcmRlci1jb2xsYXBzZTpjb2xsYXBzZSFpbXBvcnRhbnQ7IGNvbG9yOiMxMjEyMTI7IGZvbnQtZmFtaWx5OkhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmOyBmb250LXNpemU6NjVweDsgZm9udC13ZWlnaHQ6NDAwOyBsaW5lLWhlaWdodDo2NXB4OyBtYXJnaW46MDsgcGFkZGluZzowOyB0ZXh0LWFsaWduOmxlZnQ7IHZlcnRpY2FsLWFsaWduOnRvcDsgd29yZC13cmFwOmJyZWFrLXdvcmQiPiZuYnNwOw0KIDwvdGQ+DQo8L3RyPg0KPC90Ym9keT4NCjwvdGFibGU+DQo8dGFibGUgY2xhc3M9Inhfcm93IHhfZm9vdGVyLWJyYW5kLWxvZ28i
-  (?s)PHRhYmxlIGNsYXNzPSJ4X3dyYXBwZXIgeF9jb250YWN0IHhfZmxvYXQtY2VudGVyIiBzdHlsZT0ibWFyZ2luOjAgYXV0bzsgYm9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlOyBib3JkZXItc3BhY2luZzowOyBmbG9hdDpub25lOyBtYXJnaW46MCBhdXRvOyBwYWRkaW5nOjA7IHRleHQtYWxpZ246Y2VudGVyOyB2ZXJ0aWNhbC1hbGlnbjp0b3A7IHdpZHRoOjEwMCUiPg0KPHRib2R5Pg0KPHRyIHN0eWxlPSJwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wIj4NCjx0ZCBjbGFzcz0ieF93cmFwcGVyLWlubmVyIiBzdHlsZT0ibWFyZ2luOjA7IGJvcmRlci1jb2xsYXBzZTpjb2xsYXBzZSFpbXBvcnRhbnQ7IGNvbG9yOiMxMjEyMTI7IGZvbnQtZmFtaWx5OkhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmOyBmb250LXNpemU6MTRweDsgZm9udC13ZWlnaHQ6NDAwOyBsaW5lLWhlaWdodDoxLjM7IG1hcmdpbjowOyBwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wOyB3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8dGFibGUgYWxpZ249ImNlbnRlciIgY2xhc3M9InhfY29udGFpbmVyIiBzdHlsZT0ibWFyZ2luOjAgYXV0bzsgYmFj
-  (?s)PHRhYmxlIGNsYXNzPSJ4X3JvdyB4X2Zvb3Rlci1icmFuZC1sb2dvIiBzdHlsZT0iYmFja2dyb3VuZDojRjRGNEY0OyBib3JkZXItY29sbGFwc2U6Y29sbGFwc2U7IGJvcmRlci1zcGFjaW5nOjA7IGRpc3BsYXk6dGFibGU7IHBhZGRpbmc6MDsgdGV4dC1hbGlnbjpsZWZ0OyB2ZXJ0aWNhbC1hbGlnbjp0b3A7IHdpZHRoOjEwMCUiPg0KPHRib2R5Pg0KPHRyIHN0eWxlPSJwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wIj4NCjx0aCBjbGFzcz0ieF9zbWFsbC0xMiB4X2xhcmdlLTEyIHhfY29sdW1ucyB4X2ZpcnN0IHhfbGFzdCIgc3R5bGU9Im1hcmdpbjowIGF1dG87IGNvbG9yOiMxMjEyMTI7IGZvbnQtZmFtaWx5OkhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmOyBmb250LXNpemU6MTRweDsgZm9udC13ZWlnaHQ6NDAwOyBsaW5lLWhlaWdodDoxLjM7IG1hcmdpbjowIGF1dG87IHBhZGRpbmc6MDsgcGFkZGluZy1ib3R0b206MHB4OyBwYWRkaW5nLWxlZnQ6MThweDsgcGFkZGluZy1yaWdodDoxOHB4OyB0ZXh0LWFsaWduOmxlZnQ7IHZlcnRpY2FsLWFsaWduOnRvcDsgd29yZA==
-  (?s)^[A-Za-z0-9+/=
 ]+$
+  (?s)PHRhYmxlIGNsYXNzPSJ4X3JvdyB4X2Zvb3Rlci1icmFuZC1sb2dvIiBzdHlsZT0iYmFja2dyb3VuZDojRjRGNEY0OyBib3JkZXItY29sbGFwc2U6Y29sbGFwc2U7IGJvcmRlci1zcGFjaW5nOjA7IGRpc3BsYXk6dGFibGU7IHBhZGRpbmc6MDsgdGV4dC1hbGlnbjpsZWZ0OyB2ZXJ0aWNhbC1hbGlnbjp0b3A7IHdpZHRoOjEwMCUiPg0KPHRib2R5Pg0KPHRyIHN0eWxlPSJwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wIj4NCjx0aCBjbGFzcz0ieF9zbWFsbC0xMiB4X2xhcmdlLTEyIHhfY29sdW1ucyB4X2ZpcnN0IHhfbGFzdCIgc3R5bGU9Im1hcmdpbjowIGF1dG87IGNvbG9yOiMxMjEyMTI7IGZvbnQtZmFtaWx5OkhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmOyBmb250LXNpemU6MTRweDsgZm9udC13ZWlnaHQ6NDAwOyBsaW5lLWhlaWdodDoxLjM7IG1hcmdpbjowIGF1dG87IHBhZGRpbmc6MDsgcGFkZGluZy1ib3R0b206MHB4OyBwYWRkaW5nLWxlZnQ6MThweDsgcGFkZGluZy1yaWdodDoxOHB4OyB0ZXh0LWFsaWduOmxlZnQ7IHZlcnRpY2FsLWFsaWduOnRvcDsgd29yZA==
+  (?s)PHRhYmxlIHN0eWxlPSJib3JkZXItY29sbGFwc2U6Y29sbGFwc2U7IGJvcmRlci1zcGFjaW5nOjA7IHBhZGRpbmc6MDsgdGV4dC1hbGlnbjpsZWZ0OyB2ZXJ0aWNhbC1hbGlnbjp0b3A7IHdpZHRoOjEwMCUiPg0KPHRib2R5Pg0KPHRyIHN0eWxlPSJwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wIj4NCjx0ZCBoZWlnaHQ9IjY1cHgiIHN0eWxlPSJtYXJnaW46MDsgYm9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlIWltcG9ydGFudDsgY29sb3I6IzEyMTIxMjsgZm9udC1mYW1pbHk6SGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTo2NXB4OyBmb250LXdlaWdodDo0MDA7IGxpbmUtaGVpZ2h0OjY1cHg7IG1hcmdpbjowOyBwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wOyB3b3JkLXdyYXA6YnJlYWstd29yZCI+Jm5ic3A7DQogPC90ZD4NCjwvdHI+DQo8L3Rib2R5Pg0KPC90YWJsZT4NCjx0YWJsZSBzdHlsZT0iYm9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlOyBib3JkZXItc3BhY2luZzowOyBwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wOyB3aWR0aDo2MDBweCI+DQogPHRib2R5Pg0KPHRyIHN0eWxlPSJwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wIj4NCjx0ZCBzdHlsZT0ibWFyZ2luOjA7IGJvcmRlci1jb2xsYXBzZTpjb2xsYXBzZSFpbXBvcnRhbnQ7IGNvbG9yOiMxMjEyMTI7IGZvbnQtZmFtaWx5OkhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmOyBmb250LXNpemU6NjVweDsgZm9udC13ZWlnaHQ6NDAwOyBsaW5lLWhlaWdodDo2NXB4OyBtYXJnaW46MDsgcGFkZGluZzowOyB0ZXh0LWFsaWduOmxlZnQ7IHZlcnRpY2FsLWFsaWduOnRvcDsgd29yZC13cmFwOmJyZWFrLXdvcmQiPiZuYnNwOw0KIDwvdGQ+DQo8L3RyPg0KPC90Ym9keT4NCjwvdGFibGU+DQo8dGFibGUgY2xhc3M9Inhfcm93IHhfZm9vdGVyLWJyYW5kLWxvZ28i
+  (?s)^[A-Za-z0-9+/=
+]+P[a-zA-Z0-9]+\/a>[\s\S]+$
+  (?s)PHRhYmxlIGNsYXNzPSJ4X3dyYXBwZXIgeF9jb250YWN0IHhfZmxvYXQtY2VudGVyIiBzdHlsZT0ibWFyZ2luOjAgYXV0bzsgYm9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlOyBib3JkZXItc3BhY2luZzowOyBmbG9hdDpub25lOyBtYXJnaW46MCBhdXRvOyBwYWRkaW5nOjA7IHRleHQtYWxpZ246Y2VudGVyOyB2ZXJ0aWNhbC1hbGlnbjp0b3A7IHdpZHRoOjEwMCUiPg0KPHRib2R5Pg0KPHRyIHN0eWxlPSJwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wIj4NCjx0ZCBjbGFzcz0ieF93cmFwcGVyLWlubmVyIiBzdHlsZT0ibWFyZ2luOjA7IGJvcmRlci1jb2xsYXBzZTpjb2xsYXBzZSFpbXBvcnRhbnQ7IGNvbG9yOiMxMjEyMTI7IGZvbnQtZmFtaWx5OkhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmOyBmb250LXNpemU6MTRweDsgZm9udC13ZWlnaHQ6NDAwOyBsaW5lLWhlaWdodDoxLjM7IG1hcmdpbjowOyBwYWRkaW5nOjA7IHRleHQtYWxpZ246bGVmdDsgdmVydGljYWwtYWxpZ246dG9wOyB3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8dGFibGUgYWxpZ249ImNlbnRlciIgY2xhc3M9InhfY29udGFpbmVyIiBzdHlsZT0ibWFyZ2luOjAgYXV0bzsgYmFj
+  (?s)^<td[^>]*>[\s\S]+<\/td>[\s\S]+$
 

@@ -64,10 +64,10 @@ def get_sid(filename):
         s = filename[count]
     return sid
 
-directory = f'./experiment/6 out of 9/txt'
+directory = f'./experiment/experiment 100/txt'
 if not os.path.exists(directory):
     os.makedirs(directory)
-    
+
 # Connect to the existing Chrome session
 options = webdriver.ChromeOptions()
 options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
@@ -89,11 +89,11 @@ os.makedirs(output_directory, exist_ok=True)
 # Sort files in directory alphabetically
 sorted_filenames = sorted(os.listdir(prompt_directory))
 
-# count = 0
+count = 0
 for filename in sorted_filenames:
-    # count+=1
-    # if count<=24:
-    #     continue
+    count+=1
+    if count<=45:
+        continue
     if filename.endswith('.txt'):
         file_path = os.path.join(prompt_directory, filename)
         with open(file_path, 'r', encoding='utf-8') as file:
